@@ -1,0 +1,13 @@
+<div [class]="isContainer ? 'panel-is-container' : 'panel-no-container'">
+  <mat-card class="mat-elevation-z8 job-card">
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-actions *ngIf="haveAction">
+        <button mat-fab (click)="onClick()" color="primary" class="button-panel">
+          <mat-icon class="icon-panel">{{icon}}</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-header>
+    <ng-content></ng-content>
+  </mat-card>
+</div>

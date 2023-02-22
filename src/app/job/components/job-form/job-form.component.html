@@ -1,0 +1,75 @@
+<ng-container>
+
+  <form [formGroup]="formGroup">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error *ngIf="title?.errors">
+        <span>Title is required.</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+      <mat-error *ngIf="description?.errors">
+        <div *ngIf="description?.errors?.['required']">
+          Description is required.
+        </div>
+        <div *ngIf="description?.errors?.['minlength']">
+          Description must be at least 10 characters long.
+        </div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Skills</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Enter skills" formControlName="skills">
+        <mat-chip-row *ngFor="let skill of skills"
+                      (removed)="remove(skill)"
+                      [editable]="true"
+                      (edited)="edit(skill, $event)"
+                      [aria-description]="'press enter to edit ' + skill">
+          {{skill}}
+          <button matChipRemove [attr.aria-label]="'remove ' + skill">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="New skill..."
+               [matChipInputFor]="chipGrid"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)"/>
+      </mat-chip-grid>
+    </mat-form-field>
+
+  </form>
+
+  <div class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onSave('draft')"
+      [disabled]="!formGroup.valid">
+      Save as Draft
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onSave('published')"
+      [disabled]="!formGroup.valid">
+      Save & Publish
+    </button>
+
+    <button
+      *ngIf="_job"
+      mat-flat-button
+      color="primary"
+      (click)="onSave('archived')"
+      [disabled]="!formGroup.valid">
+      Archive
+    </button>
+  </div>
+</ng-container>

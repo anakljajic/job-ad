@@ -7,6 +7,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {JobModule} from "./job/job.module";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -17,11 +19,12 @@ import {EffectsModule} from "@ngrx/effects";
     AppRoutingModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot({}),
-    JobModule,
+    CoreModule,
     StoreDevtoolsModule.instrument({
         maxAge: 25
       }
-    )
+    ),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

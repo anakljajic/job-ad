@@ -1,0 +1,24 @@
+@import "src/variables";
+
+.sidenav-container {
+  min-height: 100vh;
+
+  mat-sidenav {
+    border: none;
+    width: 300px;
+  }
+}
+
+.item-sidenav {
+  background: $primaryColor;
+}
+
+.content-container {
+  background-color: #f2f2f2 !important;
+  padding: 15px 15px 0 15px;
+  overflow-y: hidden;
+}
+
+mat-sidenav-container {
+  height: 90vh;
+}

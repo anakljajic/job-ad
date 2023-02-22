@@ -1,0 +1,33 @@
+@import "src/variables";
+
+.sidenav-item {
+  position: relative;
+  border-radius: 0 32px 32px 0;
+  overflow-x: hidden;
+  width: 95%;
+  font-weight: 400;
+
+  &:focus {
+    background: transparent;
+  }
+
+  &:hover {
+    background-color: transparentize($primaryColor, 0.96);
+    border-color: transparentize($primaryColor, 0.96);
+    .item-selector {
+      transform: translateX(-5px);
+    }
+  }
+
+  .item-selector {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: -100%;
+    background-color: black;
+  }
+}
+
+.active-link {
+  background-color: white !important;
+}

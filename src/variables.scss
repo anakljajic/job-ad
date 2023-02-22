@@ -1,0 +1,126 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary-theme: (
+  50 : #e0f8f0,
+  100 : #b3edd9,
+  200 : #80e2c0,
+  300 : #4dd6a7,
+  400 : #26cd94,
+  500 : #00DA91,
+  600 : #00be79,
+  700 : #00b66e,
+  800 : #00af64,
+  900 : #00a251,
+  A100 : #ccffe2,
+  A200 : #99ffc5,
+  A400 : #66ffa8,
+  A700 : #4dff9a,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$accent-theme: (
+  50 : #e5e5e5,
+  100 : #bebebe,
+  200 : #939393,
+  300 : #686867,
+  400 : #474747,
+  500 : #272726,
+  600 : #232322,
+  700 : #1d1d1c,
+  800 : #171717,
+  900 : #0e0e0d,
+  A100 : #eb6969,
+  A200 : #e53c3c,
+  A400 : #ee0000,
+  A700 : #d40000,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$warn-theme: (
+  50 : #f9e0e0,
+  100 : #f0b3b3,
+  200 : #e68080,
+  300 : #db4d4d,
+  400 : #d42626,
+  500 : #cc0000,
+  600 : #c70000,
+  700 : #c00000,
+  800 : #b90000,
+  900 : #ad0000,
+  A100 : #ffd7d7,
+  A200 : #ffa4a4,
+  A400 : #ff7171,
+  A700 : #ff5858,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$primaryColor: map-get($primary-theme, 500);
+$primaryColorLighter: map-get($primary-theme, 300);
+$primaryColorDarken: map-get($primary-theme, 900);
+
+$accentColor: map-get($accent-theme, 500);
+$accentColorLighter: map-get($accent-theme, 300);
+$accentColorDarken: map-get($accent-theme, 900);
+
+$my-primary: mat.define-palette($primary-theme, 500);
+$my-accent: mat.define-palette($accent-theme, 100, 200, 400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($my-theme);

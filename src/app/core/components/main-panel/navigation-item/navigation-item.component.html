@@ -1,0 +1,13 @@
+<a mat-list-item
+   [routerLink]="[navigationItem.url]"
+   class="sidenav-item"
+   routerLinkActive="active-link"
+   [routerLinkActiveOptions]="{exact: true}"
+   [disableRipple]="true"
+>
+  <div style="display: flex">
+    <mat-icon>{{navigationItem.icon}}</mat-icon>
+    <div class="item-selector"></div>
+    <div>{{navigationItem.title}}</div>
+  </div>
+</a>

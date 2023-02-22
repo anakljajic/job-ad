@@ -1,0 +1,39 @@
+@import "src/variables";
+
+.panel-is-container {
+  padding: 10px;
+}
+
+.panel-no-container {
+  padding: 10px 200px;
+}
+
+.job-card {
+  padding: 22px;
+}
+
+.icon-panel {
+  color: white;
+  font-weight: bold;
+}
+
+.button-panel {
+  margin-right: 22px !important;
+  outline: none;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: lighten(grey, 15);
+  }
+}
+
+mat-card-header {
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.mat-card-header-text {
+  display: flex;
+  align-items: center;
+}
