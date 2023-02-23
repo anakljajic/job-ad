@@ -1,0 +1,87 @@
+<div class="job-table">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="skills">
+      <th mat-header-cell *matHeaderCellDef>Skills</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.skills.length > 2; else oneSkill">
+          <mat-chip-listbox *ngFor="let skill of element.skills.slice(0,2); let i = index; let last = last">
+            <mat-chip>{{skill}}</mat-chip>
+            <mat-chip *ngIf="last"
+                      matTooltip="More required skills: {{element.skills.slice(2, element.skills.length).join(', ')}}">
+              +{{element.skills.length - 2}}</mat-chip>
+          </mat-chip-listbox>
+        </div>
+        <ng-template #oneSkill>
+          <mat-chip-listbox *ngFor="let skill of element.skills.slice(0,2); let i = index; let last = last">
+            <mat-chip>{{skill}}</mat-chip>
+          </mat-chip-listbox>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip [ngClass]="'chip-status-' + element.status">{{element.status | uppercase}}</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            (click)="viewJob(element)">
+            <mat-icon>remove_red_eye</mat-icon>
+            <span>Preview</span>
+          </button>
+          <button
+            *ngIf="element.status === 'draft' || element.status === 'published'"
+            mat-menu-item
+            (click)="editJob(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button
+            *ngIf="element.status === 'draft'"
+            mat-menu-item
+            (click)="publishJob(element)">
+            <mat-icon>publish</mat-icon>
+            <span>Publish</span>
+          </button>
+          <button
+            *ngIf="element.status === 'draft' || element.status === 'published'"
+            mat-menu-item
+            (click)="archiveJob(element)">
+            <mat-icon>archive</mat-icon>
+            <span>Archive</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

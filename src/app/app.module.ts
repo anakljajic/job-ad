@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {JobModule} from "./job/job.module";
+import {JobModule} from "./job-ad/job.module";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

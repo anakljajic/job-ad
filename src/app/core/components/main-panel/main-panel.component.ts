@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./main-panel.component.scss']
 })
 export class MainPanelComponent {
-  openedSideNav = true;
+  openedSideNav = false;
 
   toggleSideNav(): void {
     this.openedSideNav = !this.openedSideNav;

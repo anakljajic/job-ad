@@ -1,0 +1,55 @@
+@import "src/variables";
+
+.container-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.icon {
+  //justify-content: end;
+  padding-right: 15px;
+  color: white;
+  width: fit-content;
+  padding-top: 15px;
+  margin-left: auto;
+
+  mat-icon {
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .active {
+    background-color: $primaryColor;
+  }
+
+  .not-active {
+    background-color: $accentColorLighter;
+  }
+}
+
+.tools-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .item {
+    width: inherit;
+  }
+
+  .tools-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+
+    mat-form-field {
+      padding: 5px 2px 5px 2px !important;
+    }
+  }
+}

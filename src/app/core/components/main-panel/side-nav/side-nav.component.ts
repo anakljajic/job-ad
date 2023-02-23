@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class SideNavComponent implements OnInit {
 
-  @Input() opened = true;
+  @Input() opened = false;
 
   home: any;
   navigationRoutes: any;

@@ -1,0 +1,75 @@
+@import "src/variables";
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.mat-card-content {
+  flex: 1;
+}
+
+.card {
+  margin: 5px;
+  border: 0.5px solid $accentColor;
+  flex-basis: calc(33.33% - 10px);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.chip-status {
+  background-color: red !important;
+  font-weight: 500;
+
+  &-draft {
+    background-color: sandybrown !important;
+  }
+
+  &-published {
+    background: $primaryColor !important;
+  }
+
+  &-archived {
+    background: #b5d5c5 !important;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .card {
+    flex-basis: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-container {
+    max-height: 40vh;
+  }
+  .card {
+    flex-basis: 100%;
+  }
+  .action-button {
+    flex-basis: 50%;
+    width: min-content;
+  }
+  .card-actions {
+    justify-content: center;
+  }
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  flex-basis: 33%;
+}

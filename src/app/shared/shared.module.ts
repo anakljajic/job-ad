@@ -4,20 +4,34 @@ import {PanelContentComponent} from './components/panel-content/panel-content.co
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {SearchTextInputComponent} from './components/search-text-input/search-text-input.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {SelectTextInputComponent} from './components/select-text-input/select-text-input.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
   declarations: [
-    PanelContentComponent
+    PanelContentComponent,
+    SearchTextInputComponent,
+    SelectTextInputComponent
   ],
   exports: [
-    PanelContentComponent
+    PanelContentComponent,
+    SearchTextInputComponent,
+    SelectTextInputComponent
   ],
   imports: [
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class SharedModule {

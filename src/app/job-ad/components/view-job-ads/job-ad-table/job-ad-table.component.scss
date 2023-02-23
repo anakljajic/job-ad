@@ -1,0 +1,58 @@
+@import "src/variables";
+
+table {
+  width: 100%;
+}
+
+.job-table {
+  overflow: auto;
+  max-height: 50vh;
+  max-width: 100%;
+
+  table {
+    border-collapse: separate !important;
+  }
+
+  th {
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  td {
+    font-size: 15px;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+
+    button {
+      outline: none;
+    }
+  }
+}
+
+.chip-status {
+  color: white !important;
+  font-weight: 500;
+
+  &-draft {
+    background-color: sandybrown !important;
+  }
+
+  &-published {
+    background: $primaryColor !important;
+  }
+
+  &-archived {
+    background: #b5d5c5 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .job-table {
+    max-height: 40vh;
+  }
+  .mat-paginator {
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,42 @@
+<app-panel-content
+  [title]="'Job ads'"
+  [haveAction]="true"
+  [icon]="'add'"
+  [isContainer]="true"
+  (buttonClick)="onClick()">
+
+  <div class="icon" action>
+    <mat-icon [ngClass]="tableView ? 'active' : 'not-active'" (click)="switchToTable()"
+              [matTooltip]="'Show table view'">reorder
+    </mat-icon>
+    <mat-icon [ngClass]="cardView ? 'active' : 'not-active'" (click)="switchToCard()"
+              [matTooltip]="'Show card view'">view_module
+    </mat-icon>
+  </div>
+
+  <div class="tools-container">
+    <div class="item">
+      <app-search-text-input
+        [fc]="formGroup.controls.search">
+      </app-search-text-input>
+    </div>
+    <div class="item">
+      <app-select-text-input
+        *ngIf="formGroup.controls.status"
+        [fc]="formGroup.controls.status"
+        [items]="statuses">
+      </app-select-text-input>
+    </div>
+  </div>
+
+  <div>
+
+    <ng-container *ngIf="tableView">
+      <app-job-ad-table [dataSource]="dataSource"></app-job-ad-table>
+    </ng-container>
+    <ng-container *ngIf="cardView">
+      <app-job-ad-cards [jobAds]="jobAds | async"></app-job-ad-cards>
+    </ng-container>
+    <mat-paginator [pageSizeOptions]="[6,12,24]"></mat-paginator>
+  </div>
+</app-panel-content>

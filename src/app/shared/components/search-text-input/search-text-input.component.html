@@ -1,0 +1,8 @@
+<div>
+  <mat-form-field appearance="outline">
+    <input [formControl]="fc" matInput placeholder="Search jobs..."
+           (keyup)="searchInput()">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-icon matSuffix class="clear-button" (click)="clearInput()">clear</mat-icon>
+  </mat-form-field>
+</div>

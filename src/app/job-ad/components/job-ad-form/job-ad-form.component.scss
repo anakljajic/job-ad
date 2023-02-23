@@ -1,0 +1,22 @@
+.text {
+  display: flex;
+  float: right;
+}
+
+button {
+  color: white;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    width: 100px;
+    height: 40px;
+    color: white !important;
+    margin: 5px;
+    padding: 10px;
+  }
+}

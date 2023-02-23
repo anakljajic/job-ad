@@ -5,15 +5,15 @@ import {COMMA, ENTER, TAB} from "@angular/cdk/keycodes";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 
 @Component({
-  selector: 'app-job-form',
-  templateUrl: './job-form.component.html',
-  styleUrls: ['./job-form.component.scss']
+  selector: 'app-job-ad-form',
+  templateUrl: './job-ad-form.component.html',
+  styleUrls: ['./job-ad-form.component.scss']
 })
-export class JobFormComponent {
+export class JobAdFormComponent {
 
-  @Input() set job(job: JobAd | null | undefined) {
+  @Input() set jobAd(job: JobAd | null | undefined) {
     if (job) {
-      this._job = job;
+      this._jobAd = job;
       this.formGroup.patchValue(job);
     } else {
       this.formGroup.reset();
@@ -22,7 +22,7 @@ export class JobFormComponent {
 
   @Output() save = new EventEmitter<Omit<JobAd, 'id'>>();
 
-  _job?: JobAd;
+  _jobAd?: JobAd;
 
   formGroup = this.formBuilder.group({
     title: new FormControl('', {nonNullable: true, validators: [Validators.required]}),

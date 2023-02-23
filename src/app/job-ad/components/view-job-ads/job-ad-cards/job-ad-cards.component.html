@@ -1,0 +1,49 @@
+<div class="card-container">
+  <mat-card *ngFor="let jobAd of jobAds" class="mat-elevation-z18 card">
+    <mat-card-header>
+      <mat-card-title class="title">
+        <p>{{jobAd.title}}</p>
+        <mat-chip-listbox>
+          <mat-chip-option [ngClass]="'chip-status-' + jobAd.status"
+                           selectable="false">{{jobAd.status | uppercase}}</mat-chip-option>
+        </mat-chip-listbox>
+      </mat-card-title>
+      <mat-card-subtitle>{{jobAd.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions class="card-actions">
+      <button
+        class="action-button"
+        mat-button
+        color="primary"
+        (click)="viewJob(jobAd)">
+        View
+      </button>
+      <button
+        class="action-button"
+        *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
+        mat-button
+        color="primary"
+        (click)="editJob(jobAd)">
+        Edit
+      </button>
+      <button
+        class="action-button"
+        *ngIf="jobAd.status === 'draft'"
+        mat-button
+        color="primary"
+        (click)="publishJob(jobAd)">
+        Publish
+      </button>
+      <button
+        class="action-button"
+        *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
+        mat-button
+        color="primary"
+        (click)="archiveJob(jobAd)">
+        Archive
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
