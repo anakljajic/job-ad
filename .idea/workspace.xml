@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8215ab35-786e-4a28-8b7d-338a6af448c7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/dashboard/dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/dashboard/dashboard.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/dashboard/dashboard.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/dashboard/dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/header/header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/header/header.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/header/header.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/header/header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/main-panel.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/main-panel.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/main-panel.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/main-panel.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/navigation-item/navigation-item.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/navigation-item/navigation-item.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/navigation-item/navigation-item.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/navigation-item/navigation-item.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/side-nav/side-nav.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/side-nav/side-nav.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/side-nav/side-nav.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/components/main-panel/side-nav/side-nav.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/core-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/core/core.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/api/job.api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/job-ad-form/job-ad-form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/job-ad-form/job-ad-form.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/job-ad-form/job-ad-form.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/job-ad-form/job-ad-form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-cards/job-ad-cards.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-cards/job-ad-cards.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-cards/job-ad-cards.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-cards/job-ad-cards.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-table/job-ad-table.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-table/job-ad-table.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-table/job-ad-table.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/job-ad-table/job-ad-table.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/view-job-ads.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/view-job-ads.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/view-job-ads.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/components/view-job-ads/view-job-ads.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/constants/job.init-data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/containers/add-job-ad/add-job-ad.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/containers/add-job-ad/add-job-ad.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/containers/add-job-ad/add-job-ad.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/containers/add-job-ad/add-job-ad.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/job-components.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/job-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/job.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/model/job.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/store/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/store/effects.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/store/reducers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/store/selectors.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/job-ad/store/state.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/panel-content/panel-content.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/panel-content/panel-content.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/panel-content/panel-content.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/panel-content/panel-content.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/search-text-input/search-text-input.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/search-text-input/search-text-input.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/search-text-input/search-text-input.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/search-text-input/search-text-input.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/select-text-input/select-text-input.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/select-text-input/select-text-input.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/select-text-input/select-text-input.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/components/select-text-input/select-text-input.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/shared.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/Logo_tx_group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.spec.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2M0KlhUIALesZWW1549Jwin33VD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/anak/Desktop/job-ad/frontend",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/anak/Desktop/job-ad/node_modules/typescript/lib"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/job/components/view-jobs" />
+      <recent name="$PROJECT_DIR$/src/app/core" />
+      <recent name="$PROJECT_DIR$/src/app/job" />
+      <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8215ab35-786e-4a28-8b7d-338a6af448c7" name="Changes" comment="" />
+      <created>1676899213450</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676899213450</updated>
+      <workItem from="1676899216112" duration="91000" />
+      <workItem from="1676899343702" duration="9162000" />
+      <workItem from="1676921561758" duration="6376000" />
+      <workItem from="1676970116794" duration="2004000" />
+      <workItem from="1676972352066" duration="23591000" />
+      <workItem from="1677011744238" duration="7685000" />
+      <workItem from="1677055702160" duration="25182000" />
+      <workItem from="1677096454915" duration="10474000" />
+      <workItem from="1677145017479" duration="25351000" />
+      <workItem from="1677176670428" duration="1167000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
