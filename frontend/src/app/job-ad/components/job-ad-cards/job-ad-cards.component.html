@@ -12,28 +12,28 @@
           <mat-menu #menu="matMenu">
             <button
               mat-menu-item
-              (click)="viewJob(jobAd)">
+              (click)="call(action.PREVIEW, jobAd.id)">
               <mat-icon>remove_red_eye</mat-icon>
               <span>Preview</span>
             </button>
             <button
               *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
               mat-menu-item
-              (click)="editJob(jobAd)">
+              (click)="call(action.EDIT, jobAd.id)">
               <mat-icon>edit</mat-icon>
               <span>Edit</span>
             </button>
             <button
               *ngIf="jobAd.status === 'draft'"
               mat-menu-item
-              (click)="publishJob(jobAd)">
+              (click)="call(action.PUBLISH, jobAd)">
               <mat-icon>publish</mat-icon>
               <span>Publish</span>
             </button>
             <button
               *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
               mat-menu-item
-              (click)="archiveJob(jobAd)">
+              (click)="call(action.ARCHIVE, jobAd)">
               <mat-icon>archive</mat-icon>
               <span>Archive</span>
             </button>

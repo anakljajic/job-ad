@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-nav',
@@ -14,10 +14,7 @@ export class SideNavComponent implements OnInit {
   navigationRoutes: any;
   navigationItems: any;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    // this.router.events.subscribe(value => {
-    //   this.checkRoutes();
-    // })
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -26,8 +23,6 @@ export class SideNavComponent implements OnInit {
 
   checkRoutes() {
     var navigationRoute = this.router.config.find(r => r.path === '' && !r.redirectTo) as any;
-    console.log(navigationRoute.data);
-    console.log(this.router.url)
     this.home = {
       title: navigationRoute.data.title,
       path: navigationRoute.path,
@@ -35,13 +30,11 @@ export class SideNavComponent implements OnInit {
       url: '/' + navigationRoute.path,
       activated: this.router.url === ('/' + navigationRoute.path)
     };
-    console.log(this.home)
 
     this.navigationItems = [this.home];
 
     this.navigationRoutes = navigationRoute.children
       .filter((route: any) => {
-        console.log(route);
         return route.path && route.data && route.data.title
       });
 
@@ -52,6 +45,5 @@ export class SideNavComponent implements OnInit {
       url: '/' + r.path,
       activated: this.router.url === ('/' + r.path)
     }));
-    console.log(this.navigationItems);
   }
 }

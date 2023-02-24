@@ -11,16 +11,16 @@ import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 })
 export class JobAdFormComponent {
 
-  @Input() set jobAd(job: JobAd | null | undefined) {
-    if (job) {
-      this._jobAd = job;
-      this.formGroup.patchValue(job);
+  @Input() set jobAd(jobAd: JobAd | null | undefined) {
+    if (jobAd) {
+      this._jobAd = jobAd;
+      this.formGroup.patchValue(jobAd);
     } else {
       this.formGroup.reset();
     }
   }
 
-  @Output() save = new EventEmitter<Omit<JobAd, 'id'>>();
+  @Output() save = new EventEmitter<JobAd>();
 
   _jobAd?: JobAd;
 

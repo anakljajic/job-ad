@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {AddJobAdComponent} from "./containers/add-job-ad/add-job-ad.component";
-import {ViewJobAdsComponent} from "./components/view-job-ads/view-job-ads.component";
+import {ViewJobAdsComponent} from "./containers/view-job-ads/view-job-ads.component";
+import {EditJobAdComponent} from "./containers/edit-job-ad/edit-job-ad.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddJobAdComponent
+  },
+  {
+    path: 'edit/:id',
+    component: EditJobAdComponent
   }
 ];
 

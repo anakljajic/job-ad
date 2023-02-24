@@ -11,7 +11,6 @@ export class SearchTextInputComponent {
   @Output() searchKeyUp: EventEmitter<string> = new EventEmitter<string>();
 
   searchInput(): void {
-    console.log('Search input: ' + this.fc.value);
     this.searchKeyUp.emit();
   }
 

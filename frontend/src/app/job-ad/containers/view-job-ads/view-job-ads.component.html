@@ -36,7 +36,10 @@
       <app-job-ad-table [dataSource]="dataSource"></app-job-ad-table>
     </ng-container>
     <ng-container *ngIf="cardView">
-      <app-job-ad-cards [jobAds]="jobAds | async"></app-job-ad-cards>
+      <app-job-ad-cards
+        [jobAds]="jobAds | async"
+        (callToAction)="callAction($event)"
+      ></app-job-ad-cards>
     </ng-container>
     <mat-paginator [pageSizeOptions]="[6,12,24]"></mat-paginator>
   </div>

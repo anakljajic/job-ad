@@ -8,6 +8,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {JobAdEffects} from "./store/effects";
 import {HttpClientModule} from "@angular/common/http";
 import {JobComponentsModule} from "./job-components.module";
+import {CallJobAdActionService} from "./services/callJobAdActionService";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {JobComponentsModule} from "./job-components.module";
     HttpClientModule
   ],
   providers: [
-    JobAdApi
+    JobAdApi,
+    CallJobAdActionService
   ]
 })
 export class JobModule {

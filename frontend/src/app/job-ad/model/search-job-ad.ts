@@ -1,11 +1,13 @@
+import {JobAd} from "./job-ad";
+
 export interface SearchRequest {
-  title: string;
-  status: string[];
+  title?: string;
+  status?: string[];
   limit: number;
   offset: number;
 }
 
 export interface SearchResponse {
-  data: any[];
+  data: JobAd[];
   count: number;
 }

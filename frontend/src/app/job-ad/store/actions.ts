@@ -19,7 +19,7 @@ export const enum EJobActions {
   SearchJobAdsSuccess = '[JobAd] Search Job Ads Success'
 }
 
-export const addJobAd = createAction(EJobActions.AddJobAd, props<{ jobAd: JobAd }>());
+export const addJobAd = createAction(EJobActions.AddJobAd, props<{ jobAd: Omit<JobAd, 'id'> }>());
 export const addJobAdSuccess = createAction(EJobActions.AddJobAdSuccess, props<{ jobAd: JobAd }>());
 
 export const updateJobAd = createAction(EJobActions.UpdateJobAd, props<{ jobAd: JobAd }>());

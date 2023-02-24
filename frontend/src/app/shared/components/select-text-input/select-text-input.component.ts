@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormControl} from "@angular/forms";
   templateUrl: './select-text-input.component.html',
   styleUrls: ['./select-text-input.component.scss']
 })
-export class SelectTextInputComponent implements OnInit {
+export class SelectTextInputComponent {
   @Input() fc!: FormControl;
   @Input() items: string[] = [];
   @Output() selectedItem: EventEmitter<string[]> = new EventEmitter<string[]>();
@@ -15,12 +15,7 @@ export class SelectTextInputComponent implements OnInit {
     return this.fc.value;
   }
 
-  ngOnInit(): void {
-    console.log(this.fc);
-  }
-
   onSelectedItem(): void {
-    console.log('Selected items: ' + this.selectedItems);
     this.selectedItem.emit(this.selectedItems);
   }
 }

@@ -4,10 +4,9 @@ import {Observable} from "rxjs";
 import {JobAd} from "../model/job-ad";
 import {SearchRequest, SearchResponse} from "../model/search-job-ad";
 
-
 @Injectable()
 export class JobAdApi {
-  readonly JOB_AD_API = '';
+  readonly JOB_AD_API = 'api/jobs';
 
   constructor(private http: HttpClient) {
   }
@@ -16,7 +15,7 @@ export class JobAdApi {
     return this.http.get<JobAd>(this.JOB_AD_API + '/' + id);
   }
 
-  addJobAd(jobAd: JobAd): Observable<JobAd> {
+  addJobAd(jobAd: Omit<JobAd, 'id'>): Observable<JobAd> {
     return this.http.post<JobAd>(this.JOB_AD_API, jobAd);
   }
 

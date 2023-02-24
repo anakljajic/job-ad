@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'jobs',
-        data: {title: 'Job', icon: 'worker'},
+        data: {title: 'Job ads', icon: 'worker'},
         loadChildren: () =>
           import('./job-ad/job.module').then((module) => module.JobModule),
       }

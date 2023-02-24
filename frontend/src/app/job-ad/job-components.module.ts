@@ -4,7 +4,6 @@ import {JobAdFormComponent} from './components/job-ad-form/job-ad-form.component
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {JobAdTableComponent} from './components/view-job-ads/job-ad-table/job-ad-table.component';
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
 import {AddJobAdComponent} from './containers/add-job-ad/add-job-ad.component';
@@ -13,14 +12,16 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatMenuModule} from "@angular/material/menu";
-import {ViewJobAdsComponent} from './components/view-job-ads/view-job-ads.component';
+import {ViewJobAdsComponent} from './containers/view-job-ads/view-job-ads.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSelectModule} from "@angular/material/select";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { JobAdCardsComponent } from './components/view-job-ads/job-ad-cards/job-ad-cards.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDividerModule} from "@angular/material/divider";
+import {EditJobAdComponent} from './containers/edit-job-ad/edit-job-ad.component';
+import {JobAdTableComponent} from "./components/job-ad-table/job-ad-table.component";
+import {JobAdCardsComponent} from "./components/job-ad-cards/job-ad-cards.component";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatDividerModule} from "@angular/material/divider";
     JobAdTableComponent,
     AddJobAdComponent,
     ViewJobAdsComponent,
-    JobAdCardsComponent
+    JobAdCardsComponent,
+    EditJobAdComponent
   ],
   imports: [
     CommonModule,
