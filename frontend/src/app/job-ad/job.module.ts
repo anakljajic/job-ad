@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {JobRoutingModule} from "./job-routing.module";
-import {JobApi} from "./api/job.api";
+import {JobAdApi} from "./api/job-ad-api.service";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./store/reducers";
 import {EffectsModule} from "@ngrx/effects";
-import {JobEffects} from "./store/effects";
+import {JobAdEffects} from "./store/effects";
 import {HttpClientModule} from "@angular/common/http";
 import {JobComponentsModule} from "./job-components.module";
 
@@ -15,13 +15,13 @@ import {JobComponentsModule} from "./job-components.module";
   imports: [
     CommonModule,
     StoreModule.forFeature('job', reducers),
-    EffectsModule.forFeature([JobEffects]),
+    EffectsModule.forFeature([JobAdEffects]),
     JobRoutingModule,
     JobComponentsModule,
     HttpClientModule
   ],
   providers: [
-    JobApi
+    JobAdApi
   ]
 })
 export class JobModule {

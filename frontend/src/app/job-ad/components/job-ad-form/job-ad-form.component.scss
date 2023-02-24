@@ -20,3 +20,16 @@ button {
     padding: 10px;
   }
 }
+
+@media (max-width: 1025px) {
+
+  .actions {
+    display: block;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    button {
+      width: inherit;
+    }
+  }
+}

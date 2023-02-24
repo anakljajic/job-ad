@@ -13,20 +13,14 @@
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <input matInput formControlName="description">
-      <mat-error *ngIf="description?.errors">
-        <div *ngIf="description?.errors?.['required']">
-          Description is required.
-        </div>
-        <div *ngIf="description?.errors?.['minlength']">
-          Description must be at least 10 characters long.
-        </div>
-      </mat-error>
+      <mat-error *ngIf="description?.errors?.['required']">Description is required.</mat-error>
+      <mat-error *ngIf="description?.errors?.['minlength']">Description must be at least 10 characters long.</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Skills</mat-label>
       <mat-chip-grid #chipGrid aria-label="Enter skills" formControlName="skills">
-        <mat-chip-row *ngFor="let skill of skills"
+        <mat-chip-row *ngFor="let skill of chipSkills"
                       (removed)="remove(skill)"
                       [editable]="true"
                       (edited)="edit(skill, $event)"
@@ -40,8 +34,9 @@
                [matChipInputFor]="chipGrid"
                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                [matChipInputAddOnBlur]="addOnBlur"
-               (matChipInputTokenEnd)="add($event)"/>
+               (matChipInputTokenEnd)="add($event)">
       </mat-chip-grid>
+      <mat-error *ngIf="skills?.errors?.['required']">Skill is required.</mat-error>
     </mat-form-field>
 
   </form>

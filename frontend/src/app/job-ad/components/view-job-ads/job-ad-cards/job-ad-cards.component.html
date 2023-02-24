@@ -3,47 +3,69 @@
     <mat-card-header>
       <mat-card-title class="title">
         <p>{{jobAd.title}}</p>
-        <mat-chip-listbox>
-          <mat-chip-option [ngClass]="'chip-status-' + jobAd.status"
-                           selectable="false">{{jobAd.status | uppercase}}</mat-chip-option>
-        </mat-chip-listbox>
+        <mat-chip [ngClass]="'chip-status-' + jobAd.status">{{jobAd.status | uppercase}}
+        </mat-chip>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              mat-menu-item
+              (click)="viewJob(jobAd)">
+              <mat-icon>remove_red_eye</mat-icon>
+              <span>Preview</span>
+            </button>
+            <button
+              *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
+              mat-menu-item
+              (click)="editJob(jobAd)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button
+              *ngIf="jobAd.status === 'draft'"
+              mat-menu-item
+              (click)="publishJob(jobAd)">
+              <mat-icon>publish</mat-icon>
+              <span>Publish</span>
+            </button>
+            <button
+              *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
+              mat-menu-item
+              (click)="archiveJob(jobAd)">
+              <mat-icon>archive</mat-icon>
+              <span>Archive</span>
+            </button>
+          </mat-menu>
+        </div>
       </mat-card-title>
-      <mat-card-subtitle>{{jobAd.description}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        Required skills:
+        <div *ngIf="jobAd.skills.length > 2; else oneSkill">
+          <mat-chip-listbox>
+            <div *ngFor="let skill of jobAd.skills.slice(0,2); let i = index; let last = last">
+              <mat-chip>{{skill}}</mat-chip>
+              <mat-chip *ngIf="last"
+                        matTooltip="More required skills: {{jobAd.skills.slice(2, jobAd.skills.length).join(', ')}}">
+                +{{jobAd.skills.length - 2}}</mat-chip>
+            </div>
+          </mat-chip-listbox>
+        </div>
+        <ng-template #oneSkill>
+          <mat-chip-listbox>
+            <mat-chip *ngFor="let skill of jobAd.skills.slice(0,2)">{{skill}}</mat-chip>
+          </mat-chip-listbox>
+        </ng-template>
+      </mat-card-subtitle>
+      <mat-card-subtitle
+        *ngIf="jobAd.description.length > 200; else shorterDescription"
+        matTooltip="{{jobAd.description.slice(0,jobAd.description.length)}}">{{jobAd.description.slice(0, 200)}}
+        ...
+      </mat-card-subtitle>
+      <ng-template #shorterDescription>
+        <mat-card-subtitle>{{jobAd.description}}</mat-card-subtitle>
+      </ng-template>
     </mat-card-header>
-    <mat-card-content>
-    </mat-card-content>
-    <mat-card-actions class="card-actions">
-      <button
-        class="action-button"
-        mat-button
-        color="primary"
-        (click)="viewJob(jobAd)">
-        View
-      </button>
-      <button
-        class="action-button"
-        *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
-        mat-button
-        color="primary"
-        (click)="editJob(jobAd)">
-        Edit
-      </button>
-      <button
-        class="action-button"
-        *ngIf="jobAd.status === 'draft'"
-        mat-button
-        color="primary"
-        (click)="publishJob(jobAd)">
-        Publish
-      </button>
-      <button
-        class="action-button"
-        *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
-        mat-button
-        color="primary"
-        (click)="archiveJob(jobAd)">
-        Archive
-      </button>
-    </mat-card-actions>
   </mat-card>
 </div>

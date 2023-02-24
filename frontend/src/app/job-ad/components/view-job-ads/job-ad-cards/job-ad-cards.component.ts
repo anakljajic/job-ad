@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {JobAd} from "../../../model/job";
+import {JobAd} from "../../../model/job-ad";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";

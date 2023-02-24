@@ -14,7 +14,6 @@
 
 .card {
   margin: 5px;
-  border: 0.5px solid $accentColor;
   flex-basis: calc(33.33% - 10px);
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
@@ -56,20 +55,13 @@
   .card {
     flex-basis: 100%;
   }
-  .action-button {
-    flex-basis: 50%;
-    width: min-content;
-  }
-  .card-actions {
-    justify-content: center;
-  }
 }
 
-.card-actions {
+mat-card-footer {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.action-button {
-  flex-basis: 33%;
+mat-card-header {
+  padding: 5px 10px;
 }

@@ -5,7 +5,7 @@
 }
 
 .panel-no-container {
-  padding: 10px 200px;
+  padding: 10px 100px;
 }
 
 .panel-card {
@@ -37,4 +37,19 @@ mat-card-header {
 .mat-card-header-text {
   display: flex;
   align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  padding: 0 5px;
+}
+
+@media (max-width: 1025px) {
+  .panel-no-container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
 }

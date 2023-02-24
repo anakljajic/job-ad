@@ -1,9 +1,36 @@
-import {Action, createReducer} from "@ngrx/store";
+import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from "lodash-es";
 import {INIT_JOB_STATE, JobState} from "./state";
+import {
+  addJobAdSuccess,
+  getAllJobAdsSuccess,
+  getJobAdByIdSuccess,
+  searchJobAdsSuccess,
+  updateJobAdSuccess
+} from "./actions";
 
 const reducer = createReducer(
-  cloneDeep(INIT_JOB_STATE)
+  cloneDeep(INIT_JOB_STATE),
+  on(addJobAdSuccess, ((state, {jobAd}) => ({
+    ...state,
+    jobAd
+  }))),
+  on(updateJobAdSuccess, ((state, {jobAd}) => ({
+    ...state,
+    jobAd
+  }))),
+  on(getJobAdByIdSuccess, ((state, {jobAd}) => ({
+    ...state,
+    jobAd
+  }))),
+  on(getAllJobAdsSuccess, ((state, {jobAds}) => ({
+    ...state,
+    jobAds
+  }))),
+  on(searchJobAdsSuccess, ((state, {searchResponse}) => ({
+    ...state,
+    searchResponse
+  }))),
 )
 
 export function reducers(state: JobState | undefined, action: Action): JobState {

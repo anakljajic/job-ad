@@ -6,8 +6,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./panel-content.component.scss']
 })
 export class PanelContentComponent implements OnInit {
-  @Input() title: string | undefined;
-  @Input() icon: string | undefined;
+  @Input() title!: string;
+  @Input() tooltip!: string;
+  @Input() icon!: string;
   @Input() haveAction = false;
   @Input() isContainer = false;
   @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();

@@ -1,4 +1,4 @@
-import {JobAd} from "../model/job";
+import {JobAd} from "../model/job-ad";
 
 export const INIT_DATA: JobAd[] = [
   {
@@ -15,7 +15,12 @@ export const INIT_DATA: JobAd[] = [
     title: 'Junior Software developer',
     description: 'Lorem Ipsum is simply dummy text of ' +
       'the printing and typesetting industry. Lorem Ipsum has been the industry\'s ' +
-      'typesetting, remaining essentially unchanged',
+      'typesetting, remaining essentially unchanged Lorem Ipsum is simply dummy text of the printing and typesetting ' +
+      'the printing and typesetting industry. Lorem Ipsum has been the industry\'s ' +
+      'typesetting, remaining essentially unchanged Lorem Ipsum is simply dummy text of the printing and typesetting ' +
+      'the printing and typesetting industry. Lorem Ipsum has been the industry\'s ' +
+      'typesetting, remaining essentially unchanged Lorem Ipsum is simply dummy text of the printing and typesetting ' +
+      'industry. Lorem Ipsum has been the industry\'s typesetting, remaining essentially unchanged',
     skills: ['Angular'],
     status: 'published'
   },

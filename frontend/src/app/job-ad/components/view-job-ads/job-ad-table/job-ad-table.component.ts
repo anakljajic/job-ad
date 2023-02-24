@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {JobAd} from "../../../model/job";
+import {JobAd} from "../../../model/job-ad";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({

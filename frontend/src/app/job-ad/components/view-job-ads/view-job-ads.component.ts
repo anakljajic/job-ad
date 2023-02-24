@@ -5,7 +5,7 @@ import {INIT_DATA} from "../../constants/job.init-data";
 import {MatPaginator} from "@angular/material/paginator";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
-import {JobAd} from "../../model/job";
+import {JobAd} from "../../model/job-ad";
 
 @Component({
   selector: 'app-view-jobs',

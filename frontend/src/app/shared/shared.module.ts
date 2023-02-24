@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SelectTextInputComponent} from './components/select-text-input/select-text-input.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -23,16 +24,17 @@ import {MatInputModule} from "@angular/material/input";
     SearchTextInputComponent,
     SelectTextInputComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatTooltipModule
+    ]
 })
 export class SharedModule {
 }

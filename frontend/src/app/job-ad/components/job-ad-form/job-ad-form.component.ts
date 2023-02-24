@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {JobAd, JobAdStatus} from "../../model/job";
+import {JobAd, JobAdStatus} from "../../model/job-ad";
 import {COMMA, ENTER, TAB} from "@angular/cdk/keycodes";
 import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 
@@ -37,6 +37,10 @@ export class JobAdFormComponent {
     return this.formGroup.get('title');
   }
 
+  get skills() {
+    return this.formGroup.get('skills');
+  }
+
   get description() {
     return this.formGroup.get('description');
   }
@@ -56,23 +60,23 @@ export class JobAdFormComponent {
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA, TAB] as const;
-  skills: string[] = [];
+  chipSkills: string[] = [];
 
   add(event: MatChipInputEvent): void {
     const skill = (event.value || '').trim();
 
     if (skill) {
-      this.skills.push(skill);
+      this.chipSkills.push(skill);
     }
 
     event.chipInput!.clear();
   }
 
   remove(skill: string): void {
-    const index = this.skills.indexOf(skill);
+    const index = this.chipSkills.indexOf(skill);
 
     if (index >= 0) {
-      this.skills.splice(index, 1);
+      this.chipSkills.splice(index, 1);
     }
   }
 
@@ -84,9 +88,9 @@ export class JobAdFormComponent {
       return;
     }
 
-    const index = this.skills.indexOf(skill);
+    const index = this.chipSkills.indexOf(skill);
     if (index >= 0) {
-      this.skills[index] = value;
+      this.chipSkills[index] = value;
     }
   }
 
