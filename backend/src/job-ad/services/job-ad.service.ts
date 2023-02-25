@@ -80,6 +80,18 @@ export class JobAdService {
     };
   }
 
+  async getStatistic() {
+    const draft = await this.jobAdRepo.countBy({ status: 'draft' });
+    const published = await this.jobAdRepo.countBy({ status: 'published' });
+    const archived = await this.jobAdRepo.countBy({ status: 'archived' });
+
+    return {
+      draft,
+      published,
+      archived,
+    };
+  }
+
   private static checkJobAdForUpdate(job: JobAd, updateJobDto: UpdateJobAdDto) {
     if (
       job.status === 'draft' &&

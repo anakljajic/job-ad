@@ -25,6 +25,11 @@ export class JobAdController {
     return this.jobAdService.getJobAds();
   }
 
+  @Get('statistic')
+  getStatistic() {
+    return this.jobAdService.getStatistic();
+  }
+
   @Get(':id')
   findJobAdById(@Param('id', ParseIntPipe) id: number) {
     return this.jobAdService.findJobAdById(id);
