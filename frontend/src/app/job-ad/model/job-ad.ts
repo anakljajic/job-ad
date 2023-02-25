@@ -23,5 +23,3 @@ export interface JobAd {
 }
 
 export type JobAdStatus = 'draft' | 'published' | 'archived';
-
-export const statuses = ['Draft', 'Published', 'Archived'];

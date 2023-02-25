@@ -1,8 +1,8 @@
-import {JobAd} from "./job-ad";
+import { JobAd } from './job-ad';
 
 export interface SearchRequest {
-  title?: string;
-  status?: string[];
+  title?: string | null;
+  status?: string[] | null;
   limit: number;
   offset: number;
 }

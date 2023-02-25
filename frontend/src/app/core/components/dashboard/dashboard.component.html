@@ -1,2 +1,25 @@
-<app-panel-content [isContainer]="true">
+<app-panel-content [isContainer]="true" *ngrxLet="statistic$ | async as statistic" [title]="'Job ad dashboard'">
+  <div class="dashboard-container">
+    <mat-card class="tile draft">
+      <mat-card-title>DRAFT</mat-card-title>
+      <mat-divider class="divider"></mat-divider>
+      <mat-card-content class="digit">
+        {{statistic?.draft}}
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="tile published">
+      <mat-card-title>PUBLISHED</mat-card-title>
+      <mat-divider class="divider"></mat-divider>
+      <mat-card-content class="digit">
+        {{statistic?.published}}
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="tile archived">
+      <mat-card-title>ARCHIVED</mat-card-title>
+      <mat-divider class="divider"></mat-divider>
+      <mat-card-content class="digit">
+        {{statistic?.archived}}
+      </mat-card-content>
+    </mat-card>
+  </div>
 </app-panel-content>
