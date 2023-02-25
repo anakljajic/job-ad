@@ -1,0 +1,58 @@
+version: "3.8"
+
+networks:
+  job_ad_net:
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    volumes:
+      - ./backend:/anak/src/app
+      - /anak/src/app/node_modules/
+    command: npm run start:debug
+    depends_on: 
+      - postgres
+    environment:
+      DATABASE_URL: postgres://job_ad:password@postgres:5432/job_ad
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - job_ad_net
+  
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    command: npm run start
+    volumes:
+      - ./frontend:/anak/frontend/src/app
+    ports:
+      - 4200:4200
+    links:
+      - backend
+    networks:
+      - job_ad_net
+
+  postgres:
+    image: postgres:10.4
+    command: ["postgres", "-c", "log_statement=all"]
+    environment:
+      POSTGRES_USER: job_ad
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: job_ad
+    ports:
+      - 35000:5432
+    networks:
+      - job_ad_net
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - job_ad_net
