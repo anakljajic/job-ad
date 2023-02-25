@@ -1,27 +1,24 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Route} from "@angular/router";
-
-export interface NavigationRoute extends Route {
-  title?: string;
-  path?: string;
-  icon?: string;
-  url?: string;
-  activated: boolean;
-}
+import { Component, Input, OnInit } from '@angular/core';
+import { IsActiveMatchOptions, Route } from '@angular/router';
+import {
+  HOME_NAVIGATION_ITEM,
+  NavigationItem,
+} from '../../../model/navigation-item';
 
 @Component({
   selector: 'app-navigation-item',
   templateUrl: './navigation-item.component.html',
-  styleUrls: ['./navigation-item.component.scss']
+  styleUrls: ['./navigation-item.component.scss'],
 })
 export class NavigationItemComponent implements OnInit {
+  @Input() navigationItem: NavigationItem = HOME_NAVIGATION_ITEM;
 
-  @Input() navigationItem: NavigationRoute = {
-    title: 'Home',
-    path: '',
-    activated: false
+  readonly matchOptions: IsActiveMatchOptions = {
+    queryParams: 'ignored',
+    matrixParams: 'exact',
+    paths: 'exact',
+    fragment: 'exact',
   };
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

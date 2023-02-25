@@ -2,12 +2,13 @@
    [routerLink]="[navigationItem.url]"
    class="sidenav-item"
    routerLinkActive="active-link"
-   [routerLinkActiveOptions]="{exact: true}"
+   [routerLinkActiveOptions]="matchOptions"
    [disableRipple]="true"
 >
   <div style="display: flex">
     <mat-icon>{{navigationItem.icon}}</mat-icon>
+    <mat-divider vertical></mat-divider>
     <div class="item-selector"></div>
-    <div>{{navigationItem.title | uppercase}}</div>
+    <div class="navigation-title">{{navigationItem.title | uppercase}}</div>
   </div>
 </a>

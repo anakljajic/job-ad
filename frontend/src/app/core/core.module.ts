@@ -22,6 +22,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { LetModule } from '@ngrx/component';
 import { CoreApi } from './api/core-api.service';
+import { RouteCatcherService } from './services/route-catcher.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,6 @@ import { CoreApi } from './api/core-api.service';
     MatExpansionModule,
     MatListModule,
   ],
-  providers: [CoreApi],
+  providers: [CoreApi, RouteCatcherService],
 })
 export class CoreModule {}
