@@ -17,6 +17,12 @@
       <mat-error *ngIf="description?.errors?.['minlength']">Description must be at least 10 characters long.</mat-error>
     </mat-form-field>
 
+    <app-select-text-input
+      [isMultiple]="false"
+      [fc]="formGroup.controls.status"
+      [items]="statuses | filterStatus: _jobAd">
+    </app-select-text-input>
+
     <app-chip-text-input
       [fc]="formGroup.controls.skills"
       [chipItems]="chipSkills">
@@ -28,28 +34,9 @@
     <button
       mat-flat-button
       color="primary"
-      *ngIf="_jobAd?.status === 'draft' || !_jobAd"
-      (click)="onSave('draft')"
+      (click)="onSave()"
       [disabled]="!formGroup.valid">
-      Save as Draft
-    </button>
-
-    <button
-      mat-flat-button
-      color="primary"
-      *ngIf="_jobAd?.status === 'draft' || _jobAd?.status === 'published' || !_jobAd"
-      (click)="onSave('published')"
-      [disabled]="!formGroup.valid">
-      Publish
-    </button>
-
-    <button
-      *ngIf="_jobAd?.status === 'published'"
-      mat-flat-button
-      color="primary"
-      (click)="onSave('archived')"
-      [disabled]="!formGroup.valid">
-      Archive
+      Save
     </button>
   </div>
 </ng-container>

@@ -12,7 +12,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { debounceTime, Subscription, take } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import { JobAd } from '../../model/job-ad';
+import { JobAd, JobAdStatus } from '../../model/job-ad';
 import { Store } from '@ngrx/store';
 import { selectJobAdSearchResponse } from '../../store/selectors';
 import { JobAdActions } from '../../index';
@@ -39,7 +39,7 @@ export class ViewJobAdsComponent
   tableView = false;
   cardView = true;
 
-  readonly statuses: string[] = ['draft', 'published', 'archived'];
+  readonly statuses: JobAdStatus[] = ['draft', 'published', 'archived'];
 
   formGroup = this.formBuilder.group({
     search: new FormControl(''),

@@ -1,15 +1,14 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {JobAd} from "../model/job-ad";
-import {SearchRequest, SearchResponse} from "../model/search-job-ad";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JobAd } from '../model/job-ad';
+import { SearchRequest, SearchResponse } from '../model/search-job-ad';
 
 @Injectable()
 export class JobAdApi {
   readonly JOB_AD_API = 'api/job-ads';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getJobAdById(id: number): Observable<JobAd> {
     return this.http.get<JobAd>(this.JOB_AD_API + '/' + id);
@@ -20,7 +19,6 @@ export class JobAdApi {
   }
 
   updateJobAd(jobAd: JobAd): Observable<JobAd> {
-    console.log(jobAd);
     return this.http.put<JobAd>(this.JOB_AD_API + '/' + jobAd.id, jobAd);
   }
 
@@ -29,6 +27,9 @@ export class JobAdApi {
   }
 
   searchJobAds(searchRequest: SearchRequest): Observable<SearchResponse> {
-    return this.http.post<SearchResponse>(this.JOB_AD_API + '/search', searchRequest);
+    return this.http.post<SearchResponse>(
+      this.JOB_AD_API + '/search',
+      searchRequest
+    );
   }
 }

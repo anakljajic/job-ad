@@ -1,14 +1,14 @@
 <ng-container *ngrxLet="jobAd$ | async as jobAd">
   <h2 mat-dialog-title>
-    <span>{{jobAd.title}}</span>
+    <span>{{jobAd?.title}}</span>
   </h2>
   <mat-dialog-content class="mat-typography">
-    <span>Status: {{jobAd.status}}</span>
+    <span>Status: {{jobAd?.status}}</span>
     <div>
-      Description: {{jobAd.description}}
+      Description: {{jobAd?.description}}
     </div>
     <div>
-      Required skills: {{jobAd.skills.join(', ')}}
+      Required skills: {{jobAd?.skills?.join(', ')}}
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

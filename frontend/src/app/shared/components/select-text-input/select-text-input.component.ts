@@ -1,14 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-select-text-input',
   templateUrl: './select-text-input.component.html',
-  styleUrls: ['./select-text-input.component.scss']
+  styleUrls: ['./select-text-input.component.scss'],
 })
 export class SelectTextInputComponent {
   @Input() fc!: FormControl;
   @Input() items: string[] = [];
+  @Input() isMultiple = false;
   @Output() selectedItem: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   get selectedItems(): string[] {

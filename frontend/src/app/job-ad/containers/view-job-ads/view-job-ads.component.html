@@ -23,6 +23,7 @@
     </div>
     <div class="item">
       <app-select-text-input
+        [isMultiple]="true"
         *ngIf="formGroup.controls.status"
         [fc]="formGroup.controls.status"
         [items]="statuses">
