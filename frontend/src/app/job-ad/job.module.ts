@@ -8,7 +8,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {JobAdEffects} from "./store/effects";
 import {HttpClientModule} from "@angular/common/http";
 import {JobComponentsModule} from "./job-components.module";
-import {CallJobAdActionService} from "./services/call-job-ad-action.service";
+import {JobAdActionService} from "./services/job-ad-action.service";
 import {SharedModule} from "../shared/shared.module";
 
 
@@ -21,11 +21,11 @@ import {SharedModule} from "../shared/shared.module";
     JobRoutingModule,
     JobComponentsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     JobAdApi,
-    CallJobAdActionService
+    JobAdActionService
   ]
 })
 export class JobModule {

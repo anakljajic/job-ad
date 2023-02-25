@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {JobAd} from "../../model/job-ad";
-import {CallAction, ECallToAction} from "../../model/call-to-action";
 
 @Component({
   selector: 'app-job-ad-cards',
@@ -8,16 +7,10 @@ import {CallAction, ECallToAction} from "../../model/call-to-action";
   styleUrls: ['./job-ad-cards.component.scss']
 })
 export class JobAdCardsComponent {
-  readonly action = ECallToAction;
-
   @Input() jobAds: JobAd[] = [];
-  @Output() callToAction: EventEmitter<CallAction> = new EventEmitter<CallAction>();
+  @Input() menuItems: any;
 
   constructor() {
-  }
-
-  call(cto: ECallToAction, payload?: any): void {
-    this.callToAction.emit({action: cto, payload} as CallAction);
   }
 
 }

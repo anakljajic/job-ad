@@ -7,12 +7,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {
-
-  @Input() opened = false;
-
   home: any;
   navigationRoutes: any;
   navigationItems: any;
+
+  @Input() opened = false;
 
   constructor(private router: Router) {
   }

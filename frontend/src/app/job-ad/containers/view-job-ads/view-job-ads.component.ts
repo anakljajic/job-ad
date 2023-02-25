@@ -9,8 +9,7 @@ import {Store} from "@ngrx/store";
 import {selectJobAdSearchResponse} from "../../store/selectors";
 import {JobAdActions} from "../../index";
 import {SearchRequest} from "../../model/search-job-ad";
-import {CallJobAdActionService} from "../../services/call-job-ad-action.service";
-import {CallAction, ECallToAction} from "../../model/call-to-action";
+import {JobAdActionService} from "../../services/job-ad-action.service";
 
 @Component({
   selector: 'app-view-jobs',
@@ -20,6 +19,7 @@ import {CallAction, ECallToAction} from "../../model/call-to-action";
 export class ViewJobAdsComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
   readonly jodAdsSearchResponse$ = this.store.select(selectJobAdSearchResponse);
+  readonly menuItems = this.jobAdService.getMenuItems;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   jobAds!: Observable<any>;
@@ -39,7 +39,7 @@ export class ViewJobAdsComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute,
               private cdr: ChangeDetectorRef,
-              private jobAdService: CallJobAdActionService) {
+              private jobAdService: JobAdActionService) {
   }
 
   ngOnInit(): void {
@@ -61,23 +61,6 @@ export class ViewJobAdsComponent implements OnInit, OnDestroy {
 
   onClick(): void {
     this.router.navigate(['add'], {relativeTo: this.route});
-  }
-
-  callAction(event: CallAction): void {
-    switch (event.action) {
-      case ECallToAction.PREVIEW:
-        this.jobAdService.previewJobAd(event.payload);
-        break;
-      case ECallToAction.EDIT:
-        this.jobAdService.editJobAd(event.payload);
-        break;
-      case ECallToAction.ARCHIVE:
-        this.jobAdService.updateJobAd({...event.payload as JobAd, status: 'archived'});
-        break;
-      case ECallToAction.PUBLISH:
-        this.jobAdService.updateJobAd({...event.payload as JobAd, status: 'published'});
-        break;
-    }
   }
 
   switchToTable(): void {

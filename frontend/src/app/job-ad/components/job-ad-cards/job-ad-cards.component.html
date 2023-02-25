@@ -5,40 +5,10 @@
         <mat-chip [ngClass]="'chip-status-' + jobAd.status">{{jobAd.status | uppercase}}
         </mat-chip>
         <p>{{jobAd.title}}</p>
-        <div>
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button
-              mat-menu-item
-              (click)="call(action.PREVIEW, jobAd)">
-              <mat-icon>remove_red_eye</mat-icon>
-              <span>Preview</span>
-            </button>
-            <button
-              *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
-              mat-menu-item
-              (click)="call(action.EDIT, jobAd)">
-              <mat-icon>edit</mat-icon>
-              <span>Edit</span>
-            </button>
-            <button
-              *ngIf="jobAd.status === 'draft'"
-              mat-menu-item
-              (click)="call(action.PUBLISH, jobAd)">
-              <mat-icon>publish</mat-icon>
-              <span>Publish</span>
-            </button>
-            <button
-              *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
-              mat-menu-item
-              (click)="call(action.ARCHIVE, jobAd)">
-              <mat-icon>archive</mat-icon>
-              <span>Archive</span>
-            </button>
-          </mat-menu>
-        </div>
+        <app-menu
+          [menuItems]="menuItems"
+          [element]="jobAd">
+        </app-menu>
       </mat-card-title>
       <mat-card-subtitle class="skills">
         Required skills:

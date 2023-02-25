@@ -10,24 +10,9 @@ import {MatTableDataSource} from "@angular/material/table";
 export class JobAdTableComponent {
 
   @Input() dataSource!: MatTableDataSource<JobAd>;
+  @Input() menuItems: any;
   displayedColumns: string[] = ['id', 'title', 'description', 'skills', 'status', 'actions'];
 
   constructor() {
-  }
-
-  viewJob(job: JobAd): void {
-    console.log('View: ' + job);
-  }
-
-  editJob(job: JobAd): void {
-    console.log('Edit: ' + job);
-  }
-
-  publishJob(job: JobAd): void {
-    console.log('Publish: ' + job);
-  }
-
-  archiveJob(job: JobAd): void {
-    console.log('Archive: ' + job);
   }
 }
