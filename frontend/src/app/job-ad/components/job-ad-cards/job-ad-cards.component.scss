@@ -48,6 +48,16 @@
   }
 }
 
+.skills {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  mat-chip-listbox {
+    padding: 2px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .card-container {
     max-height: 40vh;
@@ -64,4 +74,5 @@ mat-card-footer {
 
 mat-card-header {
   padding: 5px 10px;
+  display: block;
 }

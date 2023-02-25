@@ -2,9 +2,10 @@ import {Injectable} from "@angular/core";
 import {JobAdApi} from "../api/job-ad-api.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {JobAdActions} from "../index";
-import {of, switchMap} from "rxjs";
+import {catchError, of, switchMap} from "rxjs";
 import {JobAd} from "../model/job-ad";
 import {SearchResponse} from "../model/search-job-ad";
+import {SharedActions} from "../../shared";
 
 @Injectable()
 export class JobAdEffects {
@@ -16,8 +17,14 @@ export class JobAdEffects {
     ofType(JobAdActions.addJobAd),
     switchMap(action => {
       return this.api.addJobAd(action.jobAd).pipe(
-        switchMap((jobAd: JobAd) => of(JobAdActions.addJobAdSuccess({jobAd})))
-      );
+        switchMap((jobAd: JobAd) => of(
+          SharedActions.message({message: 'Successfuly added job ad.'}),
+          JobAdActions.addJobAdSuccess({jobAd}),
+          SharedActions.navigate({url: ['jobs']})
+        )),
+        catchError(err => of(
+          SharedActions.message({message: err.message})
+        )));
     })
   ));
 
@@ -25,8 +32,14 @@ export class JobAdEffects {
     ofType(JobAdActions.updateJobAd),
     switchMap(action => {
       return this.api.updateJobAd(action.jobAd).pipe(
-        switchMap((jobAd: JobAd) => of(JobAdActions.updateJobAdSuccess({jobAd})))
-      );
+        switchMap((jobAd: JobAd) => of(
+          SharedActions.message({message: 'Successfuly updated job ad.'}),
+          JobAdActions.updateJobAdSuccess({jobAd}),
+          SharedActions.navigate({url: ['jobs']})
+        )),
+        catchError(err => of(
+          SharedActions.message({message: err})
+        )));
     })
   ));
 
@@ -34,7 +47,10 @@ export class JobAdEffects {
     ofType(JobAdActions.getJobAdById),
     switchMap(action => {
       return this.api.getJobAdById(action.id).pipe(
-        switchMap((jobAd: JobAd) => of(JobAdActions.getJobAdByIdSuccess({jobAd})))
+        switchMap((jobAd: JobAd) => of(JobAdActions.getJobAdByIdSuccess({jobAd}))),
+        catchError(err => of(
+          SharedActions.message({message: err})
+        ))
       );
     })
   ));
@@ -43,7 +59,10 @@ export class JobAdEffects {
     ofType(JobAdActions.getAllJobAds),
     switchMap(action => {
       return this.api.getAllJobAds().pipe(
-        switchMap((jobAds: JobAd[]) => of(JobAdActions.getAllJobAdsSuccess({jobAds})))
+        switchMap((jobAds: JobAd[]) => of(JobAdActions.getAllJobAdsSuccess({jobAds}))),
+        catchError(err => of(
+          SharedActions.message({message: err})
+        ))
       );
     })
   ));
@@ -52,7 +71,10 @@ export class JobAdEffects {
     ofType(JobAdActions.searchJobAds),
     switchMap(action => {
       return this.api.searchJobAds(action.searchRequest).pipe(
-        switchMap((searchResponse: SearchResponse) => of(JobAdActions.searchJobAdsSuccess({searchResponse})))
+        switchMap((searchResponse: SearchResponse) => of(JobAdActions.searchJobAdsSuccess({searchResponse}))),
+        catchError(err => of(
+          SharedActions.message({message: err})
+        ))
       );
     })
   ));

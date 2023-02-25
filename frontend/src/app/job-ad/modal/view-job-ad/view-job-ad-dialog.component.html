@@ -1,0 +1,21 @@
+<ng-container *ngIf="jobAd$ | async as jobAd">
+  <h2 mat-dialog-title>
+    <span>{{jobAd.title}}</span>
+  </h2>
+  <mat-dialog-content class="mat-typography">
+    <span>Status: {{jobAd.status}}</span>
+    <div>
+      Description: {{jobAd.description}}
+    </div>
+    <div>
+      Required skills: {{jobAd.skills.join(', ')}}
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-container>
+
+
+
+

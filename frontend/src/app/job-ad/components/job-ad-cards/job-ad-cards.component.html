@@ -2,9 +2,9 @@
   <mat-card *ngFor="let jobAd of jobAds" class="mat-elevation-z18 card">
     <mat-card-header>
       <mat-card-title class="title">
-        <p>{{jobAd.title}}</p>
         <mat-chip [ngClass]="'chip-status-' + jobAd.status">{{jobAd.status | uppercase}}
         </mat-chip>
+        <p>{{jobAd.title}}</p>
         <div>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
@@ -12,14 +12,14 @@
           <mat-menu #menu="matMenu">
             <button
               mat-menu-item
-              (click)="call(action.PREVIEW, jobAd.id)">
+              (click)="call(action.PREVIEW, jobAd)">
               <mat-icon>remove_red_eye</mat-icon>
               <span>Preview</span>
             </button>
             <button
               *ngIf="jobAd.status === 'draft' || jobAd.status === 'published'"
               mat-menu-item
-              (click)="call(action.EDIT, jobAd.id)">
+              (click)="call(action.EDIT, jobAd)">
               <mat-icon>edit</mat-icon>
               <span>Edit</span>
             </button>
@@ -40,7 +40,7 @@
           </mat-menu>
         </div>
       </mat-card-title>
-      <mat-card-subtitle>
+      <mat-card-subtitle class="skills">
         Required skills:
         <div *ngIf="jobAd.skills.length > 2; else oneSkill">
           <mat-chip-listbox>

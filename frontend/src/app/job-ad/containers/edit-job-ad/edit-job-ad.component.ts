@@ -23,9 +23,9 @@ export class EditJobAdComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateJobAd(updatedJobAd: JobAd): void {
-    console.log(updatedJobAd);
-    this.store.dispatch(JobAdActions.updateJobAd({jobAd: updatedJobAd}))
+  updateJobAd(updatedJobAd: JobAd, id: number): void {
+    console.log(updatedJobAd, id);
+    this.store.dispatch(JobAdActions.updateJobAd({jobAd: {...updatedJobAd, id}}))
   }
 
   ngOnDestroy(): void {

@@ -22,6 +22,8 @@ import {MatDividerModule} from "@angular/material/divider";
 import {EditJobAdComponent} from './containers/edit-job-ad/edit-job-ad.component';
 import {JobAdTableComponent} from "./components/job-ad-table/job-ad-table.component";
 import {JobAdCardsComponent} from "./components/job-ad-cards/job-ad-cards.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {ViewJobAdDialogComponent} from './modal/view-job-ad/view-job-ad-dialog.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import {JobAdCardsComponent} from "./components/job-ad-cards/job-ad-cards.compon
     AddJobAdComponent,
     ViewJobAdsComponent,
     JobAdCardsComponent,
-    EditJobAdComponent
+    EditJobAdComponent,
+    ViewJobAdDialogComponent
   ],
   imports: [
     CommonModule,
@@ -50,8 +53,10 @@ import {JobAdCardsComponent} from "./components/job-ad-cards/job-ad-cards.compon
     MatSelectModule,
     MatGridListModule,
     MatTooltipModule,
-    MatDividerModule
-  ]
+    MatDividerModule,
+    MatSlideToggleModule
+  ],
+  entryComponents: [ViewJobAdDialogComponent]
 })
 export class JobComponentsModule {
 }

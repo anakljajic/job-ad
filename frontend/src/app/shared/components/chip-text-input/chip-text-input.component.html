@@ -1,0 +1,23 @@
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Skills</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter items" [formControl]="fc">
+      <mat-chip-row *ngFor="let item of chipItems"
+                    (removed)="remove(item)"
+                    [editable]="true"
+                    (edited)="edit(item, $event)"
+                    [aria-description]="'press enter to edit ' + item">
+        {{item}}
+        <button matChipRemove [attr.aria-label]="'remove ' + item">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      <input placeholder="New item..."
+             [matChipInputFor]="chipGrid"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-grid>
+    <mat-error *ngIf="fc?.errors?.['required']">Required field.</mat-error>
+  </mat-form-field>
+</div>

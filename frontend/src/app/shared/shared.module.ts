@@ -11,30 +11,40 @@ import {SelectTextInputComponent} from './components/select-text-input/select-te
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {EffectsModule} from "@ngrx/effects";
+import {SharedEffects} from "./store/effects";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { ChipTextInputComponent } from './components/chip-text-input/chip-text-input.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 
 @NgModule({
   declarations: [
     PanelContentComponent,
     SearchTextInputComponent,
-    SelectTextInputComponent
+    SelectTextInputComponent,
+    ChipTextInputComponent
   ],
   exports: [
     PanelContentComponent,
     SearchTextInputComponent,
-    SelectTextInputComponent
+    SelectTextInputComponent,
+    ChipTextInputComponent
   ],
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    EffectsModule.forFeature([SharedEffects]),
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatChipsModule
+  ]
 })
 export class SharedModule {
 }

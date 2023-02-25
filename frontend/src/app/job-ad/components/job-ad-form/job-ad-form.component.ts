@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {JobAd, JobAdStatus} from "../../model/job-ad";
-import {COMMA, ENTER, TAB} from "@angular/cdk/keycodes";
-import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
+import {JobAd, JobAdStatus, statuses} from "../../model/job-ad";
+
 
 @Component({
   selector: 'app-job-ad-form',
@@ -11,26 +10,23 @@ import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
 })
 export class JobAdFormComponent {
 
-  @Input() set jobAd(jobAd: JobAd | null | undefined) {
-    if (jobAd) {
-      this._jobAd = jobAd;
-      this.formGroup.patchValue(jobAd);
-    } else {
-      this.formGroup.reset();
-    }
-  }
-
-  @Output() save = new EventEmitter<JobAd>();
-
   _jobAd?: JobAd;
 
+  chipSkills: string[] = [];
+
   formGroup = this.formBuilder.group({
-    title: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required]
+    }),
     description: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(10)]
     }),
-    skills: new FormControl([] as string[], {nonNullable: true, validators: Validators.required})
+    skills: new FormControl([] as string[], {
+      nonNullable: true,
+      validators: Validators.required
+    })
   });
 
   get title() {
@@ -45,6 +41,18 @@ export class JobAdFormComponent {
     return this.formGroup.get('description');
   }
 
+  @Input() set jobAd(jobAd: JobAd | null | undefined) {
+    if (jobAd) {
+      this._jobAd = {...jobAd};
+      this.chipSkills = [...this._jobAd.skills];
+      this.formGroup.patchValue(jobAd);
+    } else {
+      this.formGroup.reset();
+    }
+  }
+
+  @Output() save = new EventEmitter<JobAd>();
+
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -56,42 +64,6 @@ export class JobAdFormComponent {
 
   checkValuePresent(status: string): status is JobAdStatus {
     return ['draft', 'published', 'archived'].includes(status);
-  }
-
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA, TAB] as const;
-  chipSkills: string[] = [];
-
-  add(event: MatChipInputEvent): void {
-    const skill = (event.value || '').trim();
-
-    if (skill) {
-      this.chipSkills.push(skill);
-    }
-
-    event.chipInput!.clear();
-  }
-
-  remove(skill: string): void {
-    const index = this.chipSkills.indexOf(skill);
-
-    if (index >= 0) {
-      this.chipSkills.splice(index, 1);
-    }
-  }
-
-  edit(skill: string, event: MatChipEditedEvent) {
-    const value = event.value.trim();
-
-    if (!value) {
-      this.remove(skill);
-      return;
-    }
-
-    const index = this.chipSkills.indexOf(skill);
-    if (index >= 0) {
-      this.chipSkills[index] = value;
-    }
   }
 
 }

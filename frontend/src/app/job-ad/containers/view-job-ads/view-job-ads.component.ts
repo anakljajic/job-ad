@@ -1,16 +1,15 @@
 import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl} from "@angular/forms";
-import {INIT_DATA} from "../../constants/job.init-data";
 import {MatPaginator} from "@angular/material/paginator";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
-import {JobAd} from "../../model/job-ad";
+import {JobAd, statuses} from "../../model/job-ad";
 import {Store} from "@ngrx/store";
 import {selectJobAdSearchResponse} from "../../store/selectors";
 import {JobAdActions} from "../../index";
 import {SearchRequest} from "../../model/search-job-ad";
-import {CallJobAdActionService} from "../../services/callJobAdActionService";
+import {CallJobAdActionService} from "../../services/call-job-ad-action.service";
 import {CallAction, ECallToAction} from "../../model/call-to-action";
 
 @Component({
@@ -20,18 +19,16 @@ import {CallAction, ECallToAction} from "../../model/call-to-action";
 })
 export class ViewJobAdsComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
-  readonly jodAdsSearchResponse = this.store.select(selectJobAdSearchResponse);
+  readonly jodAdsSearchResponse$ = this.store.select(selectJobAdSearchResponse);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   jobAds!: Observable<any>;
-  // dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
-  dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>(INIT_DATA);
-
-  readonly statuses: string[] = ['Draft', 'Published', 'Archived'];
-  data = INIT_DATA;
+  dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
 
   tableView = false;
   cardView = true;
+
+  statuses = statuses;
 
   formGroup = this.formBuilder.group({
     search: new FormControl(''),
@@ -46,10 +43,10 @@ export class ViewJobAdsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(JobAdActions.searchJobAds({searchRequest: {limit: 6, offset: 0} as SearchRequest}));
-    // this.jodAdsSearchResponse.subscribe(searchResponse => {
-    //   if (searchResponse?.data) this.dataSource.data = searchResponse?.data;
-    // });
+    this.store.dispatch(JobAdActions.searchJobAds({searchRequest: {limit: 6, offset: 0} as SearchRequest}));
+    this.jodAdsSearchResponse$.subscribe(searchResponse => {
+      if (searchResponse?.data) this.dataSource.data = searchResponse?.data;
+    });
 
     this.cdr.detectChanges();
     this.dataSource.paginator = this.paginator;
@@ -67,7 +64,6 @@ export class ViewJobAdsComponent implements OnInit, OnDestroy {
   }
 
   callAction(event: CallAction): void {
-    console.log(event);
     switch (event.action) {
       case ECallToAction.PREVIEW:
         this.jobAdService.previewJobAd(event.payload);

@@ -6,7 +6,7 @@ import {SearchRequest, SearchResponse} from "../model/search-job-ad";
 
 @Injectable()
 export class JobAdApi {
-  readonly JOB_AD_API = 'api/jobs';
+  readonly JOB_AD_API = 'api/job-ads';
 
   constructor(private http: HttpClient) {
   }
@@ -16,11 +16,12 @@ export class JobAdApi {
   }
 
   addJobAd(jobAd: Omit<JobAd, 'id'>): Observable<JobAd> {
-    return this.http.post<JobAd>(this.JOB_AD_API, jobAd);
+    return this.http.post<JobAd>(this.JOB_AD_API + '/add', jobAd);
   }
 
   updateJobAd(jobAd: JobAd): Observable<JobAd> {
-    return this.http.put<JobAd>(this.JOB_AD_API, jobAd);
+    console.log(jobAd);
+    return this.http.put<JobAd>(this.JOB_AD_API + '/' + jobAd.id, jobAd);
   }
 
   getAllJobAds(): Observable<JobAd[]> {

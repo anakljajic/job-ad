@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {JobAdActions} from "../index";
 import {JobAd} from "../model/job-ad";
+import {ViewJobAdDialogComponent} from "../modal/view-job-ad/view-job-ad-dialog.component";
 
 @Injectable()
 export class CallJobAdActionService {
@@ -13,7 +14,9 @@ export class CallJobAdActionService {
   }
 
   previewJobAd(jobAd: JobAd): void {
-    // implement
+    this.dialog.open(ViewJobAdDialogComponent, {
+      data: {id: jobAd.id}
+    })
   }
 
   editJobAd(id: number): void {
