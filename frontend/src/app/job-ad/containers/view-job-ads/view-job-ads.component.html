@@ -16,7 +16,7 @@
     </mat-icon>
   </div>
 
-  <div class="tools-container">
+  <div class="tools-container" tools>
     <div class="item">
       <app-search-text-input
         [fc]="formGroup.controls.search">
@@ -32,25 +32,28 @@
     </div>
   </div>
 
-  <div *ngIf="dataSource.data.length > 0; else noData">
-    <ng-container *ngIf="isTableView, else cardView">
-      <app-job-ad-table
-        [menuItems]="menuItems"
-        [dataSource]="dataSource">
-      </app-job-ad-table>
-    </ng-container>
-    <ng-template #cardView>
-      <app-job-ad-cards
-        [menuItems]="menuItems"
-        [jobAds]="dataSource.data">
-      </app-job-ad-cards>
+  <div>
+    <div *ngIf="dataSource.data.length > 0; else noData">
+      <ng-container *ngIf="isTableView, else cardView">
+        <app-job-ad-table
+          [menuItems]="menuItems"
+          [dataSource]="dataSource">
+        </app-job-ad-table>
+      </ng-container>
+      <ng-template #cardView>
+        <app-job-ad-cards
+          [menuItems]="menuItems"
+          [jobAds]="dataSource.data">
+        </app-job-ad-cards>
+      </ng-template>
+    </div>
+    <ng-template #noData>
+      No data for job ads to show.
     </ng-template>
-    <mat-paginator
-      (page)="changePagination($event)"
-      [pageSizeOptions]="[6,12,24]">
-    </mat-paginator>
   </div>
-  <ng-template #noData>
-    No data for job ads to show.
-  </ng-template>
+
+  <mat-paginator footer style="position: sticky; bottom: 0; z-index: 1"
+                 (page)="changePagination($event)"
+                 [pageSizeOptions]="[6,12,24]">
+  </mat-paginator>
 </app-panel-content>

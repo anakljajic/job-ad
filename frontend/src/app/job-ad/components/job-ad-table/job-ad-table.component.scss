@@ -30,20 +30,19 @@ table {
 }
 
 .chip-status {
-  color: white !important;
-  font-weight: 500;
+  font-weight: 700;
+}
 
-  &-draft {
-    background-color: sandybrown !important;
-  }
+.draft {
+  color: sandybrown !important;
+}
 
-  &-published {
-    background: $primaryColor !important;
-  }
+.published {
+  color: $primaryColor !important;
+}
 
-  &-archived {
-    background: #b5d5c5 !important;
-  }
+.archived {
+  color: #b5d5c5 !important;
 }
 
 @media screen and (max-width: 480px) {

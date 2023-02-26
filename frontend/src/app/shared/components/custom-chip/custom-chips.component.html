@@ -1,0 +1,8 @@
+<ng-container *ngFor="let chip of chips.slice(0,2)">
+  <div class="custom-chip">{{ chip }}</div>
+</ng-container>
+<div class="custom-chip"
+     *ngIf="chips.length > 2"
+     matTooltip="More required skills: {{chips.slice(2).join(', ')}}">
+  +{{ chips.length - 2 }}
+</div>

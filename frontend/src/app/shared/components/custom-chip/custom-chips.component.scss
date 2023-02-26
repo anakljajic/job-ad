@@ -1,0 +1,29 @@
+@import "src/variables";
+
+.custom-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  color: white;
+  font-weight: 500;
+  background-color: $primaryColor;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 599px) {
+  .custom-chip {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .custom-chip {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .custom-chip {
+    font-size: 14px;
+  }
+}

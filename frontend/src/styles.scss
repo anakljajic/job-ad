@@ -11,22 +11,14 @@ body {
 }
 
 form {
-  //min-width: 150px;
   width: 100%;
   position: center;
 }
 
-mat-form-field {
-  padding: 0 5px 20px 0;
-  width: 100%;
-}
-
-@media (max-width: 767px) {
-  .mat-mdc-paginator-page-size {
-    display: none !important;
-    justify-content: center;
-  }
-}
+//
+//mat-form-field {
+//  width: 100%;
+//}
 
 .red-snackbar {
   background-color: darkred;
@@ -36,4 +28,45 @@ mat-form-field {
 .green-snackbar {
   background-color: darkgreen;
   color: white;
+}
+
+@media (max-width: 767px) {
+  .mat-mdc-paginator-page-size {
+    display: none !important;
+    justify-content: center;
+  }
+}
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .mat-mdc-form-field,
+  .mat-mdc-floating-label {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .mat-mdc-form-field,
+  .mat-mdc-floating-label {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .mat-mdc-form-field,
+  .mat-mdc-floating-label {
+    font-size: 18px;
+  }
+}
+
+.tools-container app-select-text-input .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.tools-container app-search-text-input .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }

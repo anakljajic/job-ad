@@ -1,41 +1,27 @@
 <div class="card-container">
   <mat-card *ngFor="let jobAd of jobAds" class="mat-elevation-z18 card">
     <mat-card-header>
-      <mat-card-title class="title">
-        <mat-chip [ngClass]="'chip-status-' + jobAd.status">{{jobAd.status | uppercase}}
-        </mat-chip>
-        <p>{{jobAd.title}}</p>
-        <app-menu
-          [menuItems]="menuItems"
-          [element]="jobAd">
-        </app-menu>
-      </mat-card-title>
-      <mat-card-subtitle class="skills">
-        Required skills:
-        <div *ngIf="jobAd.skills.length > 2; else oneSkill">
-          <mat-chip-listbox>
-            <div *ngFor="let skill of jobAd.skills.slice(0,2); let i = index; let last = last">
-              <mat-chip>{{skill}}</mat-chip>
-              <mat-chip *ngIf="last"
-                        matTooltip="More required skills: {{jobAd.skills.slice(2, jobAd.skills.length).join(', ')}}">
-                +{{jobAd.skills.length - 2}}</mat-chip>
-            </div>
-          </mat-chip-listbox>
-        </div>
-        <ng-template #oneSkill>
-          <mat-chip-listbox>
-            <mat-chip *ngFor="let skill of jobAd.skills.slice(0,2)">{{skill}}</mat-chip>
-          </mat-chip-listbox>
-        </ng-template>
-      </mat-card-subtitle>
-      <mat-card-subtitle
-        *ngIf="jobAd.description.length > 200; else shorterDescription"
-        matTooltip="{{jobAd.description.slice(0,jobAd.description.length)}}">{{jobAd.description.slice(0, 200)}}
-        ...
-      </mat-card-subtitle>
-      <ng-template #shorterDescription>
-        <mat-card-subtitle>{{jobAd.description}}</mat-card-subtitle>
-      </ng-template>
+      <mat-card-title-group>
+        <mat-card-title>{{ jobAd.title }}</mat-card-title>
+        <mat-card-subtitle class="status-{{ jobAd.status }}">
+          {{ jobAd.status | uppercase }}
+        </mat-card-subtitle>
+        <mat-card-actions>
+          <app-menu [menuItems]="menuItems" [element]="jobAd"/>
+        </mat-card-actions>
+      </mat-card-title-group>
     </mat-card-header>
+    <mat-card-content>
+      <mat-divider style="width: 100%; margin: 5px 0"></mat-divider>
+      <div class="description"
+           *ngrxLet="jobAd.description as description"
+           matTooltip="{{description.length > 200 ? description : undefined}}">
+        {{description.length > 200 ? description.slice(0, 200) + '...' : description}}
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-divider style="width: 100%; margin: 5px 0"></mat-divider>
+      <app-custom-chips [chips]="jobAd.skills"></app-custom-chips>
+    </mat-card-footer>
   </mat-card>
 </div>

@@ -19,6 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MenuComponent } from './components/menu/menu.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuItemDirective } from './directives/menu-item.directive';
+import { CustomChipsComponent } from './components/custom-chip/custom-chips.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MenuItemDirective } from './directives/menu-item.directive';
     ChipTextInputComponent,
     MenuComponent,
     MenuItemDirective,
+    CustomChipsComponent,
   ],
   exports: [
     PanelContentComponent,
@@ -35,6 +37,7 @@ import { MenuItemDirective } from './directives/menu-item.directive';
     SelectTextInputComponent,
     ChipTextInputComponent,
     MenuComponent,
+    CustomChipsComponent,
   ],
   imports: [
     CommonModule,
