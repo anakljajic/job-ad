@@ -1,9 +1,5 @@
 import { Component, Inject, inject, OnInit, Optional } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogConfig,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { selectJobAd } from '../../store/selectors';
 import { JobAdActions } from '../../index';

@@ -1,10 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-text-input',
   templateUrl: './search-text-input.component.html',
-  styleUrls: ['./search-text-input.component.scss']
+  styleUrls: ['./search-text-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchTextInputComponent {
   @Input() fc!: FormControl;

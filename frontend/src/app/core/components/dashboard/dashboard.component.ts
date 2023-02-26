@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectStatistic } from '../../store/selectors';
 import { Observable } from 'rxjs';
@@ -11,11 +11,11 @@ import { CoreActions } from '../../index';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  private readonly store$ = inject(Store);
+  readonly statistic$: Observable<Statistic>;
 
-  statistic$: Observable<Statistic> = this.store$.select(
-    selectStatistic
-  ) as Observable<Statistic>;
+  constructor(private store$: Store) {
+    this.statistic$ = this.store$.select(selectStatistic);
+  }
 
   ngOnInit() {
     this.store$.dispatch(CoreActions.getStatistic());

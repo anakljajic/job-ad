@@ -3,7 +3,6 @@ import { cloneDeep } from 'lodash-es';
 import { INIT_JOB_STATE, INIT_SEARCH_RESPONSE, JobState } from './state';
 import {
   addJobAdSuccess,
-  changeJobAdStatus,
   changeJobAdStatusSuccess,
   clearJobAdsSearchResponse,
   getAllJobAdsSuccess,
@@ -38,17 +37,15 @@ const reducer = createReducer(
     ...state,
     searchResponse: INIT_SEARCH_RESPONSE,
   })),
-  on(changeJobAdStatusSuccess, (state, { jobAd }) => {
-    const index = state.searchResponse!.data.findIndex(
-      (j) => j.id !== jobAd.id
-    );
-    const dataArrayCopy = [...state.searchResponse!.data];
-    dataArrayCopy[index].status = jobAd.status;
-    return {
-      ...state,
-      todos: dataArrayCopy,
-    };
-  })
+  on(changeJobAdStatusSuccess, (state, { jobAd }) => ({
+    ...state,
+    searchResponse: {
+      ...state.searchResponse!,
+      data: state.searchResponse!.data.map((j) =>
+        j.id === jobAd.id ? { ...j, status: jobAd.status } : j
+      ),
+    },
+  }))
 );
 
 export function reducers(

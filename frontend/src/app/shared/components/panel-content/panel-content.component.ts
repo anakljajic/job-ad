@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-panel-content',
   templateUrl: './panel-content.component.html',
-  styleUrls: ['./panel-content.component.scss']
+  styleUrls: ['./panel-content.component.scss'],
 })
 export class PanelContentComponent implements OnInit {
   @Input() title!: string;
@@ -13,8 +13,7 @@ export class PanelContentComponent implements OnInit {
   @Input() isContainer = false;
   @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClick(): void {
     this.buttonClick.emit();

@@ -1,8 +1,8 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  inject,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -10,74 +10,78 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { debounceTime, map, Subscription, take } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  Observable,
+  Subject,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { JobAd, JobAdStatus } from '../../model/job-ad';
 import { Store } from '@ngrx/store';
 import { selectJobAdSearchResponse } from '../../store/selectors';
 import { JobAdActions } from '../../index';
-import { SearchRequest } from '../../model/search-job-ad';
+import { SearchRequest, SearchResponse } from '../../model/search-job-ad';
 import { JobAdActionService } from '../../services/job-ad-action.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MenuItem } from '../../../shared/model/menu-item';
 
 @Component({
   selector: 'app-view-jobs',
   templateUrl: './view-job-ads.component.html',
   styleUrls: ['./view-job-ads.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewJobAdsComponent
   implements OnInit, AfterContentInit, OnDestroy
 {
-  private readonly store$ = inject(Store);
-  readonly jodAdsSearchResponse$ = this.store$.select(
-    selectJobAdSearchResponse
-  );
-  isSmallScreen$ = this.breakpointObserver
-    .observe([Breakpoints.XSmall])
-    .pipe(map((result) => result.matches));
-
-  readonly menuItems = this.jobAdService.getMenuItems;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
-
-  isTableView = false;
-
+  private readonly jodAdsSearchResponse$: Observable<SearchResponse>;
+  readonly menuItems: MenuItem[] = this.jobAdService.getMenuItems;
   readonly statuses: JobAdStatus[] = ['draft', 'published', 'archived'];
+  readonly isSmallScreen$ = this.breakpointObserver
+    .observe([Breakpoints.XSmall])
+    .pipe(
+      tap({
+        next: (result) => {
+          this.isTableView = !result;
+        },
+      }),
+      map((result) => result.matches)
+    );
 
+  dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
+  isTableView = false;
   formGroup = this.formBuilder.group({
     search: new FormControl(''),
     status: new FormControl([] as string[]),
   });
-
-  searchRequest: SearchRequest = {
+  private searchRequest: SearchRequest = {
     limit: 6,
     offset: 0,
   };
-
   totalElements = 0;
+  private destroy$ = new Subject<void>();
 
-  formSubscription: Subscription | undefined;
-  jobAdSearchResponseSubscription: Subscription | undefined;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
+    private store$: Store,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private jobAdService: JobAdActionService,
     private breakpointObserver: BreakpointObserver
-  ) {}
+  ) {
+    this.jodAdsSearchResponse$ = this.store$.select(selectJobAdSearchResponse);
+  }
 
   ngOnInit(): void {
-    this.isSmallScreen$.subscribe((value) => {
-      if (value) {
-        this.isTableView = false;
-      }
-    });
-
-    this.formSubscription = this.formGroup.valueChanges
-      .pipe(debounceTime(300))
+    this.formGroup.valueChanges
+      .pipe(debounceTime(300), takeUntil(this.destroy$))
       .subscribe((_) => {
         this.searchRequest = {
           ...this.searchRequest,
@@ -90,14 +94,15 @@ export class ViewJobAdsComponent
         );
       });
 
-    this.jodAdsSearchResponse$.subscribe((searchResponse) => {
-      if (searchResponse?.data) {
-        this.dataSource.data = searchResponse?.data;
-        this.totalElements = searchResponse.count;
-      }
-    });
-
-    this.cdr.detectChanges();
+    this.jodAdsSearchResponse$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((searchResponse) => {
+        if (searchResponse?.data) {
+          this.dataSource.data = searchResponse?.data;
+          this.totalElements = searchResponse.count;
+          this.cdr.detectChanges();
+        }
+      });
   }
 
   ngAfterContentInit() {
@@ -125,15 +130,6 @@ export class ViewJobAdsComponent
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.dataSource) {
-      this.dataSource.disconnect();
-    }
-    this.store$.dispatch(JobAdActions.clearJobAdsSearchResponse());
-    this.formSubscription?.unsubscribe();
-    this.jobAdSearchResponseSubscription?.unsubscribe();
-  }
-
   onClick(): void {
     this.router.navigate(['add'], { relativeTo: this.route });
   }
@@ -154,5 +150,14 @@ export class ViewJobAdsComponent
         searchRequest: this.searchRequest,
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.dataSource) {
+      this.dataSource.disconnect();
+    }
+    this.store$.dispatch(JobAdActions.clearJobAdsSearchResponse());
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -1,16 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sideNav
-               mode="over"
+  <mat-sidenav mode="over"
                id="sidenav"
                [opened]="opened"
                class="item-sidenav mat-elevation-z8">
-
     <mat-nav-list>
-      <app-navigation-item *ngFor="let item of navigationItems" [navigationItem]="item">
-
-      </app-navigation-item>
+      <app-navigation-item *ngFor="let item of navigationItems" [navigationItem]="item"></app-navigation-item>
     </mat-nav-list>
-
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container mat-elevation-z8">

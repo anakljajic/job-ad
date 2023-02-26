@@ -1,7 +1,5 @@
 <ng-container>
-
   <form [formGroup]="formGroup">
-
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title">
@@ -27,7 +25,6 @@
       [fc]="formGroup.controls.skills"
       [chipItems]="chipSkills">
     </app-chip-text-input>
-
   </form>
 
   <div class="actions">

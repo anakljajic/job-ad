@@ -1,16 +1,19 @@
-import {Component, Input} from '@angular/core';
-import {JobAd} from "../../model/job-ad";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { JobAd } from '../../model/job-ad';
 
 @Component({
   selector: 'app-job-ad-cards',
   templateUrl: './job-ad-cards.component.html',
-  styleUrls: ['./job-ad-cards.component.scss']
+  styleUrls: ['./job-ad-cards.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JobAdCardsComponent {
   @Input() jobAds: JobAd[] = [];
   @Input() menuItems: any;
 
-  constructor() {
-  }
+  constructor() {}
 
+  trackById(index: number, item: any) {
+    return item.id;
+  }
 }

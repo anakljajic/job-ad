@@ -1,5 +1,5 @@
 <div class="card-container">
-  <mat-card *ngFor="let jobAd of jobAds" class="mat-elevation-z18 card">
+  <mat-card *ngFor="let jobAd of jobAds; trackBy: trackById" class="mat-elevation-z18 card">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{ jobAd.title }}</mat-card-title>

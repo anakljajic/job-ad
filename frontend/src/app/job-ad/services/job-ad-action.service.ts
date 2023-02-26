@@ -5,18 +5,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JobAdActions } from '../index';
 import { JobAd } from '../model/job-ad';
 import { ViewJobAdDialogComponent } from '../modal/view-job-ad/view-job-ad-dialog.component';
+import { MenuItem } from '../../shared/model/menu-item';
 
 @Injectable()
 export class JobAdActionService {
-  private readonly store = inject(Store);
-
   constructor(
+    private store$: Store,
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  get getMenuItems() {
+  get getMenuItems(): MenuItem[] {
     return [
       {
         icon: 'edit',
@@ -64,8 +64,6 @@ export class JobAdActionService {
   }
 
   changeJobAdStatus(jobAd: JobAd): void {
-    this.store.dispatch(JobAdActions.changeJobAdStatus({ jobAd }));
+    this.store$.dispatch(JobAdActions.changeJobAdStatus({ jobAd }));
   }
-
-  openFilterDialog(): void {}
 }
