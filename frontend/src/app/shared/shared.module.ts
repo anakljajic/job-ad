@@ -20,6 +20,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuItemDirective } from './directives/menu-item.directive';
 import { CustomChipsComponent } from './components/custom-chip/custom-chips.component';
+import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CustomChipsComponent } from './components/custom-chip/custom-chips.comp
     MenuComponent,
     MenuItemDirective,
     CustomChipsComponent,
+    CustomSnackBarComponent,
   ],
   exports: [
     PanelContentComponent,

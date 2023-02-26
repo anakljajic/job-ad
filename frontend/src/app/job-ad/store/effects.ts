@@ -24,13 +24,15 @@ export class JobAdEffects {
         return this.api.addJobAd(action.jobAd).pipe(
           switchMap((jobAd: JobAd) =>
             of(
-              SharedActions.message({ message: 'Successfuly added job ad.' }),
+              SharedActions.showSuccessMessage({
+                message: 'Successfuly added job ad.',
+              }),
               JobAdActions.addJobAdSuccess({ jobAd }),
               SharedActions.navigate({ url: ['jobs'] })
             )
           ),
           catchError((err) =>
-            of(SharedActions.message({ message: err.message }))
+            of(SharedActions.showErrorMessage({ message: err.message }))
           )
         );
       })
@@ -44,12 +46,13 @@ export class JobAdEffects {
         return this.api.updateJobAd(action.jobAd).pipe(
           switchMap((jobAd: JobAd) =>
             of(
-              SharedActions.message({ message: 'Successfuly updated job ad.' }),
+              SharedActions.showSuccessMessage({
+                message: 'Successfuly updated job ad.',
+              }),
               JobAdActions.updateJobAdSuccess({ jobAd }),
               SharedActions.navigate({ url: ['jobs'] })
             )
-          ),
-          catchError((err) => of(SharedActions.message({ message: err })))
+          )
         );
       })
     )
@@ -59,12 +62,13 @@ export class JobAdEffects {
     this.actions$.pipe(
       ofType(JobAdActions.getJobAdById),
       switchMap((action) => {
-        return this.api.getJobAdById(action.id).pipe(
-          switchMap((jobAd: JobAd) =>
-            of(JobAdActions.getJobAdByIdSuccess({ jobAd }))
-          ),
-          catchError((err) => of(SharedActions.message({ message: err })))
-        );
+        return this.api
+          .getJobAdById(action.id)
+          .pipe(
+            switchMap((jobAd: JobAd) =>
+              of(JobAdActions.getJobAdByIdSuccess({ jobAd }))
+            )
+          );
       })
     )
   );
@@ -73,12 +77,13 @@ export class JobAdEffects {
     this.actions$.pipe(
       ofType(JobAdActions.getAllJobAds),
       switchMap((action) => {
-        return this.api.getAllJobAds().pipe(
-          switchMap((jobAds: JobAd[]) =>
-            of(JobAdActions.getAllJobAdsSuccess({ jobAds }))
-          ),
-          catchError((err) => of(SharedActions.message({ message: err })))
-        );
+        return this.api
+          .getAllJobAds()
+          .pipe(
+            switchMap((jobAds: JobAd[]) =>
+              of(JobAdActions.getAllJobAdsSuccess({ jobAds }))
+            )
+          );
       })
     )
   );

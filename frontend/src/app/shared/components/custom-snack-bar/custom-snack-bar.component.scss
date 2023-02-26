@@ -1,0 +1,34 @@
+@import "src/variables";
+
+.snack-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .snack-icon-button {
+    width: 20%;
+
+    button {
+      outline: none;
+      background-color: rgba(black, .2);
+    }
+  }
+
+  .snack-message {
+    width: 80%;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.success {
+  button .mat-icon {
+    color: $primaryColor;
+  }
+}
+
+.error {
+  button .mat-icon {
+    color: $warnColor;
+  }
+}

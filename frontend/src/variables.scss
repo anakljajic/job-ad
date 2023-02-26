@@ -109,9 +109,11 @@ $accentColor: map-get($accent-theme, 500);
 $accentColorLighter: map-get($accent-theme, 300);
 $accentColorDarken: map-get($accent-theme, 900);
 
+$warnColor: map-get($warn-theme, 500);
+
 $my-primary: mat.define-palette($primary-theme, 500);
 $my-accent: mat.define-palette($accent-theme, 100, 200, 400);
-$my-warn: mat.define-palette(mat.$red-palette);
+$my-warn: mat.define-palette($warn-theme, 500);
 
 $my-theme: mat.define-light-theme((
   color: (

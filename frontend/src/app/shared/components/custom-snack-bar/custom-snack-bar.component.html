@@ -1,0 +1,10 @@
+<div class="snack-container">
+  <div [class]="type + ' snack-icon-button'">
+    <button mat-icon-button (click)="click()">
+      <mat-icon>{{icon}}</mat-icon>
+    </button>
+  </div>
+  <div class="snack-message">
+    <span>{{data.message}}</span>
+  </div>
+</div>
