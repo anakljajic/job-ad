@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JobAd } from 'src/entities';
-import { In, Like, Repository } from 'typeorm';
+import { ILike, In, Repository } from 'typeorm';
 import {
   CreateJobAdDto,
   SearchJobAdDto,
@@ -66,7 +66,7 @@ export class JobAdService {
 
     const [result, total] = await this.jobAdRepo.findAndCount({
       where: {
-        title: Like('%' + title + '%'),
+        title: ILike('%' + title + '%'),
         status: !statuses || statuses.length == 0 ? undefined : In(statuses),
       },
       order: { id: 'ASC' },
