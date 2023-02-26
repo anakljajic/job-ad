@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        data: { title: 'Dahsboard', icon: 'dashboard' },
+        data: { title: 'Dashboard', icon: 'dashboard' },
         loadChildren: () =>
           import('./core/core.module').then((module) => module.CoreModule),
       },
@@ -19,7 +19,7 @@ const routes: Routes = [
         path: 'jobs',
         data: { title: 'Job ads', icon: 'worker' },
         loadChildren: () =>
-          import('./job-ad/job.module').then((module) => module.JobModule),
+          import('./job-ad/job-ad.module').then((module) => module.JobAdModule),
       },
     ],
   },

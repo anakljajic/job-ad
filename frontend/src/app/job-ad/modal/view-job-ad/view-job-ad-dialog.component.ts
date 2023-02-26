@@ -1,5 +1,9 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, inject, OnInit, Optional } from '@angular/core';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogConfig,
+} from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { selectJobAd } from '../../store/selectors';
 import { JobAdActions } from '../../index';
@@ -15,7 +19,7 @@ export class ViewJobAdDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    public dialogRef: MatDialogRef<ViewJobAdDialogComponent>
+    @Optional() private dialogRef: MatDialogRef<ViewJobAdDialogComponent>
   ) {}
 
   ngOnInit(): void {

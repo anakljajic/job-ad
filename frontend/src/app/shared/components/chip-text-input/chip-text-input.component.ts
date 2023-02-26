@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {MatChipEditedEvent, MatChipInputEvent} from "@angular/material/chips";
-import {FormControl} from "@angular/forms";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-chip-text-input',
   templateUrl: './chip-text-input.component.html',
-  styleUrls: ['./chip-text-input.component.scss']
+  styleUrls: ['./chip-text-input.component.scss'],
 })
 export class ChipTextInputComponent {
-
   @Input() fc!: FormControl;
   @Input() chipItems: string[] = [];
   @Output() selectedItem: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly separatorKeysCodes = [ENTER, COMMA, TAB] as const;
 
   add(event: MatChipInputEvent): void {
     const skill = (event.value || '').trim();
@@ -48,5 +47,4 @@ export class ChipTextInputComponent {
       this.chipItems[index] = value;
     }
   }
-
 }

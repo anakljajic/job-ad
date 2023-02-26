@@ -1,4 +1,5 @@
 <app-panel-content
+  *ngrxLet="isSmallScreen$ | async as isSmallScreen"
   [title]="'Job ads'"
   [tooltip]="'Add new job ad'"
   [haveAction]="true"
@@ -7,10 +8,10 @@
   (buttonClick)="onClick()">
 
   <div class="icon" action>
-    <mat-icon [ngClass]="tableView ? 'active' : 'not-active'" (click)="switchToTable()"
+    <mat-icon *ngIf="!isSmallScreen" [ngClass]="isTableView ? 'active' : 'not-active'" (click)="toggleView()"
               [matTooltip]="'Show table view'">reorder
     </mat-icon>
-    <mat-icon [ngClass]="cardView ? 'active' : 'not-active'" (click)="switchToCard()"
+    <mat-icon *ngIf="!isSmallScreen" [ngClass]="!isTableView ? 'active' : 'not-active'" (click)="toggleView()"
               [matTooltip]="'Show card view'">view_module
     </mat-icon>
   </div>
@@ -32,18 +33,18 @@
   </div>
 
   <div *ngIf="dataSource.data.length > 0; else noData">
-    <ng-container *ngIf="tableView">
+    <ng-container *ngIf="isTableView, else cardView">
       <app-job-ad-table
         [menuItems]="menuItems"
         [dataSource]="dataSource">
       </app-job-ad-table>
     </ng-container>
-    <ng-container *ngIf="cardView">
+    <ng-template #cardView>
       <app-job-ad-cards
         [menuItems]="menuItems"
         [jobAds]="dataSource.data">
       </app-job-ad-cards>
-    </ng-container>
+    </ng-template>
     <mat-paginator
       (page)="changePagination($event)"
       [pageSizeOptions]="[6,12,24]">

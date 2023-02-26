@@ -11,7 +11,6 @@
 }
 
 .icon {
-  //justify-content: end;
   padding-right: 15px;
   color: white;
   width: fit-content;
@@ -25,6 +24,7 @@
 
   .active {
     background-color: $primaryColor;
+    pointer-events: none;
   }
 
   .not-active {

@@ -61,4 +61,4 @@ import { LetModule } from '@ngrx/component';
   ],
   entryComponents: [ViewJobAdDialogComponent],
 })
-export class JobComponentsModule {}
+export class JobAdComponentsModule {}

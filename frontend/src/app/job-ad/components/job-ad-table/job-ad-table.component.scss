@@ -46,13 +46,29 @@ table {
   }
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 480px) {
   .job-table {
-    max-height: 40vh;
+    max-height: 30vh;
   }
   .mat-paginator {
-    font-size: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .job-table {
+    max-height: 35vh;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .job-table {
+    max-height: 45vh;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  .job-table {
+    max-height: 50vh;
   }
 }

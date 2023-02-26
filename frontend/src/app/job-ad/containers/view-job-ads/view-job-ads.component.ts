@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { debounceTime, Subscription, take } from 'rxjs';
+import { debounceTime, map, Subscription, take } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { JobAd, JobAdStatus } from '../../model/job-ad';
 import { Store } from '@ngrx/store';
@@ -18,6 +18,7 @@ import { selectJobAdSearchResponse } from '../../store/selectors';
 import { JobAdActions } from '../../index';
 import { SearchRequest } from '../../model/search-job-ad';
 import { JobAdActionService } from '../../services/job-ad-action.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-view-jobs',
@@ -31,13 +32,16 @@ export class ViewJobAdsComponent
   readonly jodAdsSearchResponse$ = this.store$.select(
     selectJobAdSearchResponse
   );
+  isSmallScreen$ = this.breakpointObserver
+    .observe([Breakpoints.XSmall])
+    .pipe(map((result) => result.matches));
+
   readonly menuItems = this.jobAdService.getMenuItems;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
 
-  tableView = false;
-  cardView = true;
+  isTableView = false;
 
   readonly statuses: JobAdStatus[] = ['draft', 'published', 'archived'];
 
@@ -59,10 +63,17 @@ export class ViewJobAdsComponent
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private jobAdService: JobAdActionService
+    private jobAdService: JobAdActionService,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
+    this.isSmallScreen$.subscribe((value) => {
+      if (value) {
+        this.isTableView = false;
+      }
+    });
+
     this.formSubscription = this.formGroup.valueChanges
       .pipe(debounceTime(300))
       .subscribe((_) => {
@@ -128,14 +139,8 @@ export class ViewJobAdsComponent
     this.router.navigate(['add'], { relativeTo: this.route });
   }
 
-  switchToTable(): void {
-    this.tableView = true;
-    this.cardView = false;
-  }
-
-  switchToCard(): void {
-    this.tableView = false;
-    this.cardView = true;
+  toggleView(): void {
+    this.isTableView = !this.isTableView;
   }
 
   changePagination($event: PageEvent): void {

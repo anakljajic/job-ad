@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IsActiveMatchOptions, Route } from '@angular/router';
+import { IsActiveMatchOptions } from '@angular/router';
 import {
   HOME_NAVIGATION_ITEM,
   NavigationItem,
