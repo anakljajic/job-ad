@@ -55,6 +55,8 @@ export class ViewJobAdsComponent
     offset: 0,
   };
 
+  totalElements = 0;
+
   formSubscription: Subscription | undefined;
   jobAdSearchResponseSubscription: Subscription | undefined;
 
@@ -89,11 +91,13 @@ export class ViewJobAdsComponent
       });
 
     this.jodAdsSearchResponse$.subscribe((searchResponse) => {
-      if (searchResponse?.data) this.dataSource.data = searchResponse?.data;
+      if (searchResponse?.data) {
+        this.dataSource.data = searchResponse?.data;
+        this.totalElements = searchResponse.count;
+      }
     });
 
     this.cdr.detectChanges();
-    this.dataSource.paginator = this.paginator;
   }
 
   ngAfterContentInit() {
@@ -109,11 +113,6 @@ export class ViewJobAdsComponent
         title: value['title'],
         status: value['status'],
       };
-
-      if (this.paginator) {
-        this.paginator.pageSize = this.searchRequest.limit;
-        this.paginator.pageIndex = this.searchRequest.offset;
-      }
 
       this.formGroup.patchValue({
         search: this.searchRequest.title,
@@ -147,7 +146,7 @@ export class ViewJobAdsComponent
     this.searchRequest = {
       ...this.searchRequest,
       limit: $event.pageSize,
-      offset: $event.pageIndex,
+      offset: $event.pageIndex * $event.pageSize,
     };
 
     this.store$.dispatch(

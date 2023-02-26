@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .sidenav-container {
   min-height: 100vh;
@@ -10,7 +10,7 @@
 }
 
 .item-sidenav {
-  background: $primaryColor;
+  background: vars.$primaryColor;
 }
 
 .content-container {

@@ -19,6 +19,9 @@ export const enum EJobActions {
   SearchJobAdsSuccess = '[JobAd] Search Job Ads Success',
 
   ClearJobAdsSearchResponse = '[JobAd] Clear Job Ads Search Response',
+
+  ChangeJobAdStatus = '[JobAd] Change Job Ad Status',
+  ChangeJobAdStatusSuccess = '[JobAd] Change Job Ad Status Success',
 }
 
 export const addJobAd = createAction(
@@ -67,6 +70,16 @@ export const clearJobAdsSearchResponse = createAction(
   EJobActions.ClearJobAdsSearchResponse
 );
 
+export const changeJobAdStatus = createAction(
+  EJobActions.ChangeJobAdStatus,
+  props<{ jobAd: JobAd }>()
+);
+
+export const changeJobAdStatusSuccess = createAction(
+  EJobActions.ChangeJobAdStatusSuccess,
+  props<{ jobAd: JobAd }>()
+);
+
 export const all = union({
   addJobAd,
   addJobAdSuccess,
@@ -79,6 +92,8 @@ export const all = union({
   searchJobAds,
   searchJobAdsSuccess,
   clearJobAdsSearchResponse,
+  changeJobAdStatus,
+  changeJobAdStatusSuccess,
 });
 
 export type JobAdActions = typeof all;

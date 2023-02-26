@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 table {
   width: 100%;
@@ -38,11 +38,11 @@ table {
 }
 
 .published {
-  color: $primaryColor !important;
+  color: vars.$primaryColor !important;
 }
 
 .archived {
-  color: #b5d5c5 !important;
+  color: darkred !important;
 }
 
 @media screen and (max-width: 480px) {

@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .custom-chip {
   display: inline-block;
@@ -6,7 +6,7 @@
   margin: 4px;
   color: white;
   font-weight: 500;
-  background-color: $primaryColor;
+  background-color: vars.$primaryColor;
   border-radius: 8px;
 }
 

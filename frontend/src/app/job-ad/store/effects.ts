@@ -116,4 +116,23 @@ export class JobAdEffects {
       })
     )
   );
+
+  changeJobAdStatusEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(JobAdActions.changeJobAdStatus),
+      switchMap((action) => {
+        return this.api.updateJobAd(action.jobAd).pipe(
+          switchMap((jobAd: JobAd) =>
+            of(
+              SharedActions.showSuccessMessage({
+                message: `Successfuly changed job ad status to ${jobAd.status}.`,
+              }),
+              JobAdActions.changeJobAdStatusSuccess({ jobAd }),
+              SharedActions.navigate({ url: ['jobs'] })
+            )
+          )
+        );
+      })
+    )
+  );
 }

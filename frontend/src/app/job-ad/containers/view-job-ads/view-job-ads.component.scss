@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .container-items {
   display: flex;
@@ -23,12 +23,12 @@
   }
 
   .active {
-    background-color: $primaryColor;
+    background-color: vars.$primaryColor;
     pointer-events: none;
   }
 
   .not-active {
-    background-color: $accentColorLighter;
+    background-color: vars.$accentColorLighter;
   }
 }
 
@@ -37,6 +37,18 @@
   align-items: stretch;
   justify-content: space-between;
 }
+
+.paginator {
+  position: sticky;
+  bottom: 0;
+  z-index: 1
+}
+
+//.no-data {
+//  text-align: center;
+//  margin: 5vh 0;
+//  font-size: 1.2rem
+//}
 
 @media (max-width: 767px) {
   .item {

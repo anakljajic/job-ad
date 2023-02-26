@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .snack-container {
   display: flex;
@@ -23,12 +23,12 @@
 
 .success {
   button .mat-icon {
-    color: $primaryColor;
+    color: vars.$primaryColor;
   }
 }
 
 .error {
   button .mat-icon {
-    color: $warnColor;
+    color: vars.$warnColor;
   }
 }

@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .sidenav-item {
   position: relative;
@@ -12,8 +12,8 @@
   }
 
   &:hover {
-    background-color: transparentize($primaryColor, 0.96);
-    border-color: transparentize($primaryColor, 0.96);
+    background-color: transparentize(vars.$primaryColor, 0.96);
+    border-color: transparentize(vars.$primaryColor, 0.96);
 
     .item-selector {
       transform: translateX(-5px);
@@ -50,14 +50,14 @@
   cursor: default;
 
   .mat-icon {
-    color: $primaryColor !important;
+    color: vars.$primaryColor !important;
   }
 
   .navigation-title {
-    color: $primaryColor !important;
+    color: vars.$primaryColor !important;
   }
 
   .mat-divider {
-    background-color: $primaryColor !important;
+    background-color: vars.$primaryColor !important;
   }
 }

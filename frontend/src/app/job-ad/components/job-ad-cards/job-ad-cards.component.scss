@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 .card-container {
   display: flex;
@@ -20,11 +20,11 @@
   }
 
   &-published {
-    color: $primaryColor !important;
+    color: vars.$primaryColor !important;
   }
 
   &-archived {
-    color: #b5d5c5 !important;
+    color: darkred !important;
   }
 }
 
@@ -37,6 +37,7 @@
   -webkit-box-orient: vertical;
   line-height: 1.5em;
   min-height: 3em;
+  word-break: break-word;
 }
 
 .mat-card-title-group {

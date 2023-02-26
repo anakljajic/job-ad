@@ -4,10 +4,8 @@
   </h2>
   <mat-dialog-content>
     <span>Status: {{jobAd?.status | titlecase}}</span>
-    <p>Description: {{jobAd?.description}}</p>
-    <mat-chip-listbox>
-      <mat-chip-option *ngFor="let skill of jobAd?.skills" [selected]="true">{{skill}}</mat-chip-option>
-    </mat-chip-listbox>
+    <span>Description: {{jobAd?.description}}</span>
+    <app-custom-chips *ngIf="jobAd" [chips]="jobAd.skills"></app-custom-chips>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Close</button>

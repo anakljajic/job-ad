@@ -2,6 +2,7 @@ mat-dialog-content {
   padding: 0 24px 24px;
   overflow-y: auto;
   max-width: 80vw;
+  display: grid;
 }
 
 @media screen and (max-width: 599px) {

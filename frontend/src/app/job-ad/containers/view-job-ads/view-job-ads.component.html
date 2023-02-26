@@ -48,12 +48,18 @@
       </ng-template>
     </div>
     <ng-template #noData>
-      No data for job ads to show.
+<!--      <div class="no-data">-->
+        No data for job ads to show.
+<!--      </div>-->
     </ng-template>
   </div>
 
-  <mat-paginator footer style="position: sticky; bottom: 0; z-index: 1"
-                 (page)="changePagination($event)"
-                 [pageSizeOptions]="[6,12,24]">
+  <mat-paginator
+    footer
+    class="paginator"
+    (page)="changePagination($event)"
+    [pageSizeOptions]="[6,12,24]"
+    [length]="totalElements"
+    pageSize="6">
   </mat-paginator>
 </app-panel-content>

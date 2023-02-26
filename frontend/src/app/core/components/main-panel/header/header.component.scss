@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as vars;
 
 mat-toolbar {
   background-color: white !important;
@@ -26,6 +26,6 @@ mat-toolbar {
 }
 
 .menu-icon {
-  color: $primaryColor;
+  color: vars.$primaryColor;
   font-weight: bold;
 }

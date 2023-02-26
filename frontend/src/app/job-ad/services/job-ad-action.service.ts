@@ -37,7 +37,7 @@ export class JobAdActionService {
         text: 'Publish',
         condition: (jobAd: JobAd) => jobAd.status === 'draft',
         action: (jobAd: JobAd) => {
-          this.updateJobAd({ ...jobAd, status: 'published' });
+          this.changeJobAdStatus({ ...jobAd, status: 'published' });
         },
       },
       {
@@ -45,7 +45,7 @@ export class JobAdActionService {
         text: 'Archive',
         condition: (jobAd: JobAd) => jobAd.status !== 'archived',
         action: (jobAd: JobAd) => {
-          this.updateJobAd({ ...jobAd, status: 'archived' });
+          this.changeJobAdStatus({ ...jobAd, status: 'archived' });
         },
       },
     ];
@@ -63,8 +63,8 @@ export class JobAdActionService {
     });
   }
 
-  updateJobAd(jobAd: JobAd): void {
-    this.store.dispatch(JobAdActions.updateJobAd({ jobAd }));
+  changeJobAdStatus(jobAd: JobAd): void {
+    this.store.dispatch(JobAdActions.changeJobAdStatus({ jobAd }));
   }
 
   openFilterDialog(): void {}
