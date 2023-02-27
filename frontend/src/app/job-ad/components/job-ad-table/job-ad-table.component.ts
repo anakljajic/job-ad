@@ -9,8 +9,6 @@ import { MatTableDataSource } from '@angular/material/table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JobAdTableComponent {
-  @Input() dataSource!: MatTableDataSource<JobAd>;
-  @Input() menuItems: any;
   displayedColumns: string[] = [
     'id',
     'title',
@@ -20,5 +18,6 @@ export class JobAdTableComponent {
     'actions',
   ];
 
-  constructor() {}
+  @Input() dataSource!: MatTableDataSource<JobAd>;
+  @Input() menuItems: any;
 }

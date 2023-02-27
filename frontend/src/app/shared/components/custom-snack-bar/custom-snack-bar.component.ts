@@ -11,13 +11,6 @@ export class CustomSnackBarComponent implements OnInit {
   icon: string;
   type: string;
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: SnackBarData) {
-    this.icon = this.getIcon;
-    this.type = this.data.snackType;
-  }
-
-  ngOnInit(): void {}
-
   get getIcon(): string {
     switch (this.data.snackType) {
       case 'success':
@@ -28,6 +21,13 @@ export class CustomSnackBarComponent implements OnInit {
         return 'success';
     }
   }
+
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: SnackBarData) {
+    this.icon = this.getIcon;
+    this.type = this.data.snackType;
+  }
+
+  ngOnInit(): void {}
 
   click(): void {
     this.data.snackBarRef.dismiss();

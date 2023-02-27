@@ -1,4 +1,4 @@
-<app-panel-content [title]="'Edit job ad'" [isContainer]="false" [icon]="'edit'" [haveAction]="false">
+<app-panel-content [title]="'Edit job ad'" [icon]="'edit'" [haveAction]="false">
   <app-job-ad-form
     *ngIf="jobAd$ | async as jobAd"
     [jobAd]="jobAd" (save)="updateJobAd($event, jobAd.id)"></app-job-ad-form>

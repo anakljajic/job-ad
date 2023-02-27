@@ -1,5 +1,4 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { cloneDeep } from 'lodash-es';
 import { INIT_JOB_STATE, INIT_SEARCH_RESPONSE, JobState } from './state';
 import {
   addJobAdSuccess,
@@ -12,7 +11,7 @@ import {
 } from './actions';
 
 const reducer = createReducer(
-  cloneDeep(INIT_JOB_STATE),
+  INIT_JOB_STATE,
   on(addJobAdSuccess, (state, { jobAd }) => ({
     ...state,
     jobAd,

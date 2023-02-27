@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { JobAd, JobAdStatus } from '../../model/job-ad';
 
@@ -6,6 +12,7 @@ import { JobAd, JobAdStatus } from '../../model/job-ad';
   selector: 'app-job-ad-form',
   templateUrl: './job-ad-form.component.html',
   styleUrls: ['./job-ad-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JobAdFormComponent {
   _jobAd!: JobAd;
@@ -29,6 +36,21 @@ export class JobAdFormComponent {
     }),
   });
 
+  @Input() set jobAd(jobAd: JobAd | null | undefined) {
+    if (jobAd) {
+      this._jobAd = { ...jobAd };
+      this.chipSkills = [...this._jobAd.skills];
+      this.formGroup.patchValue(jobAd);
+      if (jobAd.status.includes('archived')) {
+        this.status?.disable();
+      }
+    } else {
+      this.formGroup.reset();
+    }
+  }
+
+  @Output() save = new EventEmitter<JobAd>();
+
   get title() {
     return this.formGroup.get('title');
   }
@@ -44,21 +66,6 @@ export class JobAdFormComponent {
   get status() {
     return this.formGroup.get('status');
   }
-
-  @Input() set jobAd(jobAd: JobAd | null | undefined) {
-    if (jobAd) {
-      this._jobAd = { ...jobAd };
-      this.chipSkills = [...this._jobAd.skills];
-      this.formGroup.patchValue(jobAd);
-      if (jobAd.status.includes('archived')) {
-        this.status?.disable();
-      }
-    } else {
-      this.formGroup.reset();
-    }
-  }
-
-  @Output() save = new EventEmitter<JobAd>();
 
   constructor(private formBuilder: FormBuilder) {}
 

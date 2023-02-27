@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { JobAdActions } from '../index';
 import { JobAd } from '../model/job-ad';
 import { ViewJobAdDialogComponent } from '../modal/view-job-ad/view-job-ad-dialog.component';
 import { MenuItem } from '../../shared/model/menu-item';
+import { SharedActions } from '../../shared';
 
 @Injectable()
 export class JobAdActionService {
@@ -52,15 +53,15 @@ export class JobAdActionService {
   }
 
   previewJobAd(jobAd: JobAd): void {
-    const dialogRef = this.dialog.open(ViewJobAdDialogComponent, {
-      data: { id: jobAd.id },
+    this.dialog.open(ViewJobAdDialogComponent, {
+      data: { jobAd: jobAd },
     });
   }
 
   editJobAd(jobAd: JobAd): void {
-    this.router.navigate(['jobs', 'edit', jobAd.id], {
-      relativeTo: this.route,
-    });
+    this.store$.dispatch(
+      SharedActions.navigate({ url: ['jobs', 'edit', jobAd.id.toString()] })
+    );
   }
 
   changeJobAdStatus(jobAd: JobAd): void {

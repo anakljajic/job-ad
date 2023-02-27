@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { NavigationItem } from '../../../model/navigation-item';
 import { RouteCatcherService } from '../../../services/route-catcher.service';
 
@@ -6,6 +11,7 @@ import { RouteCatcherService } from '../../../services/route-catcher.service';
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavComponent implements OnInit {
   navigationItems: NavigationItem[] = [];

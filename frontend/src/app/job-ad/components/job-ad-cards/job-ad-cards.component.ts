@@ -11,8 +11,6 @@ export class JobAdCardsComponent {
   @Input() jobAds: JobAd[] = [];
   @Input() menuItems: any;
 
-  constructor() {}
-
   trackById(index: number, item: any) {
     return item.id;
   }

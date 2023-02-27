@@ -7,13 +7,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {
   debounceTime,
   map,
   Observable,
+  skip,
   Subject,
   take,
   takeUntil,
@@ -28,6 +29,7 @@ import { SearchRequest, SearchResponse } from '../../model/search-job-ad';
 import { JobAdActionService } from '../../services/job-ad-action.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MenuItem } from '../../../shared/model/menu-item';
+import { SharedActions } from '../../../shared';
 
 @Component({
   selector: 'app-view-jobs',
@@ -55,7 +57,7 @@ export class ViewJobAdsComponent
   dataSource: MatTableDataSource<JobAd> = new MatTableDataSource<JobAd>([]);
   isTableView = false;
   formGroup = this.formBuilder.group({
-    search: new FormControl(''),
+    search: new FormControl('', {}),
     status: new FormControl([] as string[]),
   });
   private searchRequest: SearchRequest = {
@@ -65,12 +67,11 @@ export class ViewJobAdsComponent
   totalElements = 0;
   private destroy$ = new Subject<void>();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(
     private store$: Store,
     private formBuilder: FormBuilder,
-    private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private jobAdService: JobAdActionService,
@@ -84,7 +85,8 @@ export class ViewJobAdsComponent
       .pipe(debounceTime(300), takeUntil(this.destroy$))
       .subscribe((_) => {
         this.searchRequest = {
-          ...this.searchRequest,
+          limit: this.paginator.pageSize || 6,
+          offset: 0,
           title: this.formGroup.get('search')?.value,
           status: this.formGroup.get('status')?.value,
         };
@@ -100,6 +102,14 @@ export class ViewJobAdsComponent
         if (searchResponse?.data) {
           this.dataSource.data = searchResponse?.data;
           this.totalElements = searchResponse.count;
+          if (this.paginator) {
+            this.paginator.pageSize = this.searchRequest.limit;
+            this.paginator.pageIndex =
+              this.paginator.pageSize * this.paginator.pageIndex >
+              searchResponse.count
+                ? 0
+                : this.searchRequest.offset / this.searchRequest.limit;
+          }
           this.cdr.detectChanges();
         }
       });
@@ -116,13 +126,17 @@ export class ViewJobAdsComponent
         limit: value['limit'] || 6,
         offset: value['offset'] || 0,
         title: value['title'],
-        status: value['status'],
+        status: value['status'] && Array.of(value['status']),
       };
 
-      this.formGroup.patchValue({
-        search: this.searchRequest.title,
-        status: this.searchRequest.status,
-      });
+      this.searchRequest.title &&
+        this.formGroup.controls.search.patchValue(this.searchRequest.title, {
+          emitEvent: false,
+        });
+      this.searchRequest.status &&
+        this.formGroup.controls.status.patchValue(this.searchRequest.status, {
+          emitEvent: false,
+        });
 
       this.store$.dispatch(
         JobAdActions.searchJobAds({ searchRequest: this.searchRequest })
@@ -131,7 +145,7 @@ export class ViewJobAdsComponent
   }
 
   onClick(): void {
-    this.router.navigate(['add'], { relativeTo: this.route });
+    this.store$.dispatch(SharedActions.navigate({ url: ['jobs', 'add'] }));
   }
 
   toggleView(): void {

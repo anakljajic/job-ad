@@ -1,10 +1,12 @@
-<ng-container *ngrxLet="jobAd$ | async as jobAd">
-  <h2 mat-dialog-title>
+<ng-container *ngrxLet="data.jobAd as jobAd">
+  <h2 mat-dialog-title class="title">
     {{jobAd?.title}}
+    <span class="status-{{ jobAd.status }}">{{ jobAd.status | uppercase }}</span>
   </h2>
   <mat-dialog-content>
-    <span>Status: {{jobAd?.status | titlecase}}</span>
-    <span>Description: {{jobAd?.description}}</span>
+    <mat-divider class="divider"></mat-divider>
+    <span class="description">{{jobAd?.description}}</span>
+    <mat-divider class="divider"></mat-divider>
     <app-custom-chips *ngIf="jobAd" [chips]="jobAd.skills"></app-custom-chips>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

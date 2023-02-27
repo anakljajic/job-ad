@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { CoreRoutingModule } from './core-routing.module';
 import { reducers } from './store/reducers';
 import { CoreEffects } from './store/effects';
@@ -18,7 +17,6 @@ import { CoreComponentsModule } from './core-components.module';
     StoreModule.forFeature('core', reducers),
     EffectsModule.forFeature([CoreEffects]),
     HttpClientModule,
-    RouterModule,
     CoreRoutingModule,
     CoreComponentsModule,
   ],

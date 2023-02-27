@@ -1,9 +1,41 @@
+@use "src/variables" as vars;
+
 mat-dialog-content {
   padding: 0 24px 24px;
   overflow-y: auto;
   max-width: 80vw;
   display: grid;
 }
+
+.title {
+  display: grid;
+}
+
+.description {
+  padding: 5px;
+}
+
+.status {
+  font-weight: 500;
+
+  &-draft {
+    color: sandybrown !important;
+  }
+
+  &-published {
+    color: vars.$primaryColor !important;
+  }
+
+  &-archived {
+    color: darkred !important;
+  }
+}
+
+.divider {
+  width: 100%;
+  margin: 5px 0;
+}
+
 
 @media screen and (max-width: 599px) {
   h2 {

@@ -4,7 +4,7 @@ import { selectJobAd } from '../../store/selectors';
 import { JobAdActions } from '../../index';
 import { ActivatedRoute } from '@angular/router';
 import { JobAd } from '../../model/job-ad';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-job-ad',
@@ -12,21 +12,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-job-ad.component.scss'],
 })
 export class EditJobAdComponent implements OnInit, OnDestroy {
-  private readonly store = inject(Store);
-  readonly jobAd$ = this.store.select(selectJobAd);
-
+  readonly jobAd$: Observable<JobAd | null>;
   private routeSubscription: Subscription | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private store$: Store) {
+    this.jobAd$ = this.store$.select(selectJobAd);
+  }
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe((params) => {
-      this.store.dispatch(JobAdActions.getJobAdById({ id: params['id'] }));
+      this.store$.dispatch(JobAdActions.getJobAdById({ id: params['id'] }));
     });
   }
 
   updateJobAd(updatedJobAd: JobAd, id: number): void {
-    this.store.dispatch(
+    this.store$.dispatch(
       JobAdActions.updateJobAd({ jobAd: { ...updatedJobAd, id } })
     );
   }

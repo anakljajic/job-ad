@@ -1,10 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { cloneDeep } from 'lodash-es';
 import { CoreState, INIT_CORE_STATE, INIT_STATISTIC } from './state';
 import { clearStatistic, getStatisticSuccess } from './actions';
 
 const reducer = createReducer(
-  cloneDeep(INIT_CORE_STATE),
+  INIT_CORE_STATE,
   on(getStatisticSuccess, (state, { statistic }) => ({
     ...state,
     statistic,
