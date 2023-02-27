@@ -3,6 +3,7 @@ import { INIT_JOB_STATE, INIT_SEARCH_RESPONSE, JobState } from './state';
 import {
   addJobAdSuccess,
   changeJobAdStatusSuccess,
+  clearJobAd,
   clearJobAdsSearchResponse,
   getAllJobAdsSuccess,
   getJobAdByIdSuccess,
@@ -23,6 +24,10 @@ const reducer = createReducer(
   on(getJobAdByIdSuccess, (state, { jobAd }) => ({
     ...state,
     jobAd,
+  })),
+  on(clearJobAd, (state) => ({
+    ...state,
+    jobAd: null,
   })),
   on(getAllJobAdsSuccess, (state, { jobAds }) => ({
     ...state,

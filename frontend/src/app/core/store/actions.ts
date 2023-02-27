@@ -15,11 +15,3 @@ export const getStatisticSuccess = createAction(
 );
 
 export const clearStatistic = createAction(ECoreActions.ClearStatistic);
-
-export const all = union({
-  getStatistic,
-  getStatisticSuccess,
-  clearStatistic,
-});
-
-export type CoreActions = typeof all;

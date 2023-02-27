@@ -20,11 +20,3 @@ export const showErrorMessage = createAction(
   ESharedActions.ShowErrorMessage,
   props<{ message: string }>()
 );
-
-export const all = union({
-  navigate,
-  showSuccessMessage,
-  showErrorMessage,
-});
-
-export type SharedActions = typeof all;

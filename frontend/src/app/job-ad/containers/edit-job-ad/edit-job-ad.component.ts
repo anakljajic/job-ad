@@ -32,6 +32,7 @@ export class EditJobAdComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.store$.dispatch(JobAdActions.clearJobAd());
     this.routeSubscription?.unsubscribe();
   }
 }

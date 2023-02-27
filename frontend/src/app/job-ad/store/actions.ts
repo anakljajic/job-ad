@@ -12,6 +12,8 @@ export const enum EJobActions {
   GetJobAdById = '[JobAd] Get Job Ad By Id',
   GetJobAdByIdSuccess = '[JobAd] Get Job Ad By Id Success',
 
+  ClearJobAd = '[JobAd] Clear Job Ad',
+
   GetAllJobAds = '[JobAd] Get All Job Ads',
   GetAllJobAdsSuccess = '[JobAd] Get All Job Ads Success',
 
@@ -51,6 +53,8 @@ export const getJobAdByIdSuccess = createAction(
   props<{ jobAd: JobAd }>()
 );
 
+export const clearJobAd = createAction(EJobActions.ClearJobAd);
+
 export const getAllJobAds = createAction(EJobActions.GetAllJobAds, emptyProps);
 export const getAllJobAdsSuccess = createAction(
   EJobActions.GetAllJobAdsSuccess,
@@ -79,21 +83,3 @@ export const changeJobAdStatusSuccess = createAction(
   EJobActions.ChangeJobAdStatusSuccess,
   props<{ jobAd: JobAd }>()
 );
-
-export const all = union({
-  addJobAd,
-  addJobAdSuccess,
-  updateJobAd,
-  updateJobAdSuccess,
-  getJobAdById,
-  getJobAdByIdSuccess,
-  getAllJobAds,
-  getAllJobAdsSuccess,
-  searchJobAds,
-  searchJobAdsSuccess,
-  clearJobAdsSearchResponse,
-  changeJobAdStatus,
-  changeJobAdStatusSuccess,
-});
-
-export type JobAdActions = typeof all;
