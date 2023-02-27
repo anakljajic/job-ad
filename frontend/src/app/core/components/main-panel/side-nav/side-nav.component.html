@@ -4,7 +4,8 @@
                [opened]="opened"
                class="item-sidenav mat-elevation-z8">
     <mat-nav-list>
-      <app-navigation-item *ngFor="let item of navigationItems" [navigationItem]="item"></app-navigation-item>
+      <app-navigation-item *ngFor="let item of navigationItems" [navigationItem]="item"
+                           (click)="onNavigationItemClick.emit()"></app-navigation-item>
     </mat-nav-list>
   </mat-sidenav>
 

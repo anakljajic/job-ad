@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JobAdApi } from '../api/job-ad-api.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { JobAdActions } from '../index';
-import { catchError, of, switchMap } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 import { JobAd } from '../model/job-ad';
 import { SearchResponse } from '../model/search-job-ad';
 import { SharedActions } from '../../shared';
@@ -30,9 +30,6 @@ export class JobAdEffects {
               JobAdActions.addJobAdSuccess({ jobAd }),
               SharedActions.navigate({ url: ['jobs'] })
             )
-          ),
-          catchError((err) =>
-            of(SharedActions.showErrorMessage({ message: err.message }))
           )
         );
       })

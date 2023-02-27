@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 import { NavigationItem } from '../../../model/navigation-item';
 import { RouteCatcherService } from '../../../services/route-catcher.service';
@@ -17,6 +19,7 @@ export class SideNavComponent implements OnInit {
   navigationItems: NavigationItem[] = [];
 
   @Input() opened = false;
+  @Output() onNavigationItemClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private routeCatcherService: RouteCatcherService) {}
 

@@ -1,4 +1,4 @@
-import { createAction, props, union } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Statistic } from '../model/statistic';
 
 export const enum ECoreActions {

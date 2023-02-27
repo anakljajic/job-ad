@@ -4,7 +4,7 @@
       <mat-card-title class="title">{{title}}</mat-card-title>
       <mat-card-actions *ngIf="haveAction">
         <ng-content select="[action]"></ng-content>
-        <button [matTooltip]="tooltip" mat-fab (click)="onClick()" color="primary" class="button-panel">
+        <button [matTooltip]="tooltip" mat-fab (click)="onClick()" color="primary">
           <mat-icon class="icon-panel">{{icon}}</mat-icon>
         </button>
       </mat-card-actions>

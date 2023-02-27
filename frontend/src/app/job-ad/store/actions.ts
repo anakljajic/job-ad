@@ -1,4 +1,4 @@
-import { createAction, emptyProps, props, union } from '@ngrx/store';
+import { createAction, emptyProps, props } from '@ngrx/store';
 import { JobAd } from '../model/job-ad';
 import { SearchRequest, SearchResponse } from '../model/search-job-ad';
 
