@@ -121,12 +121,18 @@ export class ViewJobAdsComponent
 
   getInitialSearchRequest() {
     this.route.queryParams.pipe(take(1)).subscribe((value) => {
+      const status = value['status']
+        ? Array.isArray(value['status'])
+          ? value['status']
+          : Array.of(value['status'])
+        : undefined;
+
       this.searchRequest = {
         ...this.searchRequest,
         limit: value['limit'] || 6,
         offset: value['offset'] || 0,
         title: value['title'],
-        status: value['status'] && Array.of(value['status']),
+        status: status,
       };
 
       this.searchRequest.title &&
