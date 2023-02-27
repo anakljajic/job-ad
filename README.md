@@ -1,11 +1,15 @@
+
 # Job Advertisements App
 
 This is a project that allows user to add, update, preview, and change the status of the job ad. The list of job ads is provided through the following views: via table and via cards. The data for job ads are stored in the database, and filtering is server-side to enable users to search for job ads by status and/or title.
 
-## Technologies Used
+**Note:** On smaller screen size, list of job advertisements are only available as cards view.
+
+## Technologies && Libraries Used
 
 -   Backend: NestJS
 -   Frontend: Angular version 15.1.6
+-   UI library: Angular Material
 -   Reverse proxy: Nginx
 -   Database: PostgreSQL
 -   Docker-compose
