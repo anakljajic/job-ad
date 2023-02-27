@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JobAd } from 'src/entities';
-import { ILike, In, Repository } from 'typeorm';
+import { ILike, In, QueryFailedError, Repository } from 'typeorm';
 import {
   CreateJobAdDto,
   SearchJobAdDto,
@@ -25,7 +25,9 @@ export class JobAdService {
 
   createJobAd(createJobAdDto: CreateJobAdDto) {
     const newJobAd = this.jobAdRepo.create(createJobAdDto);
-    return this.jobAdRepo.save(newJobAd);
+    return this.jobAdRepo.save(newJobAd).catch((e: Error) => {
+      throw new BadRequestException('Job ad with the same title exists.');
+    });
   }
 
   findJobAdById(id: number) {
@@ -54,6 +56,10 @@ export class JobAdService {
 
         if (e instanceof RuntimeException) {
           throw new BadRequestException(e.message);
+        }
+
+        if (e instanceof QueryFailedError) {
+          throw new BadRequestException('Job ad with the same title exists.');
         }
       });
   }
